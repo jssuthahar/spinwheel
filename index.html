@@ -3,644 +3,482 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lucky Wheel – Corporate Event Spinner</title>
-
-<!-- ═══════════════════════════════════════════════ SEO ══ -->
-<meta name="description" content="Corporate Lucky Wheel spinner for events, giveaways and team activities. Add up to 1000 participants, spin to pick a random winner, and celebrate with confetti."/>
-<meta name="keywords" content="lucky wheel, prize wheel, random name picker, corporate event spinner, giveaway wheel, event tool, team lucky draw"/>
+<title>LuckyWheel Pro – Event Spinner</title>
+<meta name="description" content="LuckyWheel Pro – a professional event spinner for schools, colleges, offices and family functions. Supports 1000 participants, multi-prize levels and global festival themes."/>
+<meta name="keywords" content="lucky wheel, prize wheel, random name picker, event spinner, corporate lucky draw, school activity, Diwali, Chinese New Year, Hari Raya, Christmas, giveaway wheel"/>
 <meta name="author" content="Sutahhar Jegatheesan"/>
 <meta name="robots" content="index, follow"/>
-<meta name="theme-color" content="#060e1c"/>
+<meta name="theme-color" content="#040d1b"/>
 <link rel="canonical" href="https://www.msdevbuild.com"/>
-
-<!-- Open Graph -->
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Lucky Wheel – Corporate Event Spinner"/>
-<meta property="og:description" content="Pick a random winner instantly. Add up to 1000 participants, customize your event branding, and spin!"/>
+<meta property="og:title" content="LuckyWheel Pro – Event Spinner"/>
+<meta property="og:description" content="Pick a random winner instantly. Multi-prize levels, world festival themes, logo upload, 1000+ participants."/>
 <meta property="og:url" content="https://www.msdevbuild.com"/>
-<meta property="og:site_name" content="msdevbuild.com"/>
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Lucky Wheel – Corporate Event Spinner"/>
-<meta name="twitter:description" content="Pick a random winner instantly. Add up to 1000 participants, spin and celebrate!"/>
-<meta name="twitter:site" content="@msdevbuild"/>
-
-<!-- Schema.org -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebApplication",
-  "name":"Lucky Wheel – Corporate Event Spinner",
-  "url":"https://www.msdevbuild.com",
-  "description":"Corporate Lucky Wheel for events and prize giveaways. Supports up to 1000 participants.",
-  "author":{"@type":"Person","name":"Sutahhar Jegatheesan","url":"https://www.msdevbuild.com"},
-  "applicationCategory":"UtilityApplication",
-  "operatingSystem":"Any"
-}
-</script>
-
-<!-- ═════════════════════════════════════════════ FONTS ══ -->
+<meta name="twitter:title" content="LuckyWheel Pro – Event Spinner"/>
+<meta name="twitter:creator" content="@msdevbuild"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"LuckyWheel Pro","url":"https://www.msdevbuild.com","description":"Professional event spinner with multi-prize levels and global festival themes.","author":{"@type":"Person","name":"Sutahhar Jegatheesan","url":"https://www.msdevbuild.com"},"applicationCategory":"UtilityApplication","operatingSystem":"Any"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800;900&family=Nunito:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
 <style>
-/* ──────────────────────────────── TOKENS ── */
+/* ═══════════════════════ TOKENS ═══════════════════════ */
 :root {
-  --bg:        #060e1c;
-  --bg2:       #0a1628;
-  --surface:   #0e1f36;
-  --surface2:  #132843;
-  --border:    rgba(96,165,250,.12);
-  --border2:   rgba(96,165,250,.22);
-  --primary:   #2563eb;
-  --primary-h: #3b82f6;
-  --gold:      #e8a020;
-  --gold-l:    #fbbf24;
-  --blue-l:    #93c5fd;
-  --text:      #eef2ff;
-  --text-m:    #8ba8cc;
-  --danger:    #f87171;
-  --success:   #34d399;
-  --radius:    12px;
-  --radius-sm: 8px;
-  --radius-lg: 18px;
-  --shadow:    0 8px 32px rgba(0,0,0,.45);
+  --bg:       #040d1b;
+  --surface:  #081525;
+  --surface2: #0c1e33;
+  --border:   rgba(96,165,250,.12);
+  --border2:  rgba(96,165,250,.24);
+  --primary:  #2563eb;
+  --accent:   #3b82f6;
+  --gold:     #f59e0b;
+  --gold-l:   #fbbf24;
+  --text:     #e8f0fe;
+  --muted:    #6b89b5;
+  --danger:   #f87171;
+  --success:  #34d399;
+  --r:        12px;
+  --r-sm:     8px;
+  --r-lg:     20px;
 }
-
-*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-
-body {
-  font-family: 'Outfit', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  padding: 0 0 3rem;
-  /* subtle grid texture */
-  background-image:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(37,99,235,.18) 0%, transparent 65%),
-    linear-gradient(rgba(96,165,250,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96,165,250,.03) 1px, transparent 1px);
-  background-size: 100% 100%, 32px 32px, 32px 32px;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:2rem;
+  transition:background .4s;
 }
-
-/* ──────────────────────────────── TOP BANNER ── */
-.top-banner {
-  background: linear-gradient(135deg, #0b1e38 0%, #0e2a50 50%, #091525 100%);
-  border-bottom: 1px solid var(--border2);
-  padding: 1.25rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
+/* ═══════════════════════ HEADER ═══════════════════════ */
+.app-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.5rem;
+  background:rgba(8,21,37,.9);
+  border-bottom:1px solid var(--border2);
+  backdrop-filter:blur(10px);
+  position:sticky;top:0;z-index:80;
+  gap:12px;flex-wrap:wrap;
 }
-.banner-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.header-brand{display:flex;align-items:center;gap:14px;}
+#logoWrap{
+  width:50px;height:50px;border-radius:12px;flex-shrink:0;overflow:hidden;
+  background:linear-gradient(135deg,var(--primary),#1e40af);
+  border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Raleway',sans-serif;font-weight:900;font-size:18px;color:#fff;
+  cursor:pointer;transition:transform .2s;
+  box-shadow:0 0 20px rgba(37,99,235,.3);
 }
-.brand-icon {
-  width: 46px; height: 46px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), #1e40af);
-  border: 1px solid rgba(96,165,250,.3);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px; font-weight: 900;
-  color: #fff;
-  letter-spacing: -1px;
-  flex-shrink: 0;
-  box-shadow: 0 0 20px rgba(37,99,235,.35);
-  transition: transform .2s;
+#logoWrap:hover{transform:scale(1.06);}
+#logoWrap img{width:100%;height:100%;object-fit:cover;}
+.brand-info{}
+.brand-company{font-family:'Raleway',sans-serif;font-size:18px;font-weight:900;letter-spacing:.01em;line-height:1.1;}
+.brand-event{font-size:12px;color:var(--gold-l);font-weight:600;margin-top:2px;letter-spacing:.04em;}
+.header-center{
+  font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
 }
-.brand-icon:hover { transform: scale(1.05); }
-.brand-text {}
-.brand-company {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: .01em;
-  line-height: 1;
+.header-actions{display:flex;gap:8px;align-items:center;}
+.btn-settings{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:var(--r-sm);
+  background:var(--surface2);border:1px solid var(--border2);
+  color:var(--text);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;
 }
-.brand-event {
-  font-size: 13px;
-  color: var(--gold-l);
-  font-weight: 500;
-  margin-top: 3px;
-  letter-spacing: .03em;
+.btn-settings:hover{background:rgba(37,99,235,.2);border-color:var(--primary);color:#93c5fd;}
+/* ═══════════════════════ LAYOUT ═══════════════════════ */
+.app-body{
+  display:grid;
+  grid-template-columns:270px 1fr 300px;
+  gap:14px;
+  padding:14px 14px 0;
+  max-width:1400px;
+  margin:0 auto;
+  align-items:start;
 }
-.banner-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--text-m);
+@media(max-width:1050px){.app-body{grid-template-columns:240px 1fr 260px;}}
+@media(max-width:820px){
+  .app-body{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;}
+  .panel-left{grid-column:1/3;grid-row:2;}
+  .panel-center{grid-column:1/3;grid-row:1;}
+  .panel-right{grid-column:1/3;grid-row:3;}
 }
-.banner-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+@media(max-width:520px){.app-body{grid-template-columns:1fr;}}
+.panel{display:flex;flex-direction:column;gap:12px;}
+/* ═══════════════════════ CARDS ═══════════════════════ */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:1.1rem 1.2rem;
+  position:relative;overflow:hidden;
 }
-.badge-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(37,99,235,.15);
-  border: 1px solid rgba(96,165,250,.2);
-  color: var(--blue-l);
-  border-radius: 100px;
-  padding: 5px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .03em;
+.card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(96,165,250,.2),transparent);
 }
-
-/* ──────────────────────────────── LAYOUT ── */
-.page-wrap {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 0;
+.card-title{
+  font-family:'Raleway',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:12px;display:flex;align-items:center;gap:7px;
 }
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  align-items: start;
+.card-title i{
+  width:20px;height:20px;border-radius:5px;
+  background:rgba(37,99,235,.18);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-style:normal;
 }
-@media(max-width:700px) {
-  .layout { grid-template-columns: 1fr; }
-  .top-banner { padding: 1rem; }
-  .brand-company { font-size: 15px; }
+.row-flex{display:flex;align-items:center;justify-content:space-between;}
+/* ═══════════════════════ FORMS ═══════════════════════ */
+input,textarea,select{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--r-sm);color:var(--text);
+  font-family:'Nunito',sans-serif;font-size:13px;outline:none;
+  transition:border-color .15s,box-shadow .15s;
 }
-.col { display: flex; flex-direction: column; gap: 1.1rem; }
-
-/* ──────────────────────────────── CARDS ── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.3rem 1.4rem;
-  box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
+input:focus,textarea:focus,select:focus{
+  border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.15);
 }
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(96,165,250,.2), transparent);
+input::placeholder,textarea::placeholder{color:var(--muted);}
+.input-row{display:flex;gap:7px;}
+.input-row input{flex:1;height:38px;padding:0 12px;}
+.inp{width:100%;height:38px;padding:0 12px;}
+textarea{width:100%;padding:9px 12px;resize:vertical;min-height:88px;line-height:1.6;}
+.inp-label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em;}
+/* ═══════════════════════ BUTTONS ═══════════════════════ */
+.btn{
+  height:38px;padding:0 16px;border-radius:var(--r-sm);
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;border:1px solid var(--border2);
+  background:var(--surface2);color:var(--text);white-space:nowrap;
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;
 }
-.card-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--text-m);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.btn:hover{background:rgba(37,99,235,.2);border-color:var(--primary);color:#93c5fd;}
+.btn:active{transform:scale(.97);}
+.btn-sm{height:30px;padding:0 11px;font-size:11px;}
+.btn-primary{background:var(--primary);border-color:#1d4ed8;color:#fff;}
+.btn-primary:hover{background:#3b82f6;border-color:var(--primary);color:#fff;}
+.btn-danger{border-color:rgba(248,113,113,.35);color:var(--danger);}
+.btn-danger:hover{background:rgba(248,113,113,.12);border-color:var(--danger);}
+.btn-success{border-color:rgba(52,211,153,.35);color:var(--success);}
+.btn-success:hover{background:rgba(52,211,153,.12);border-color:var(--success);}
+.spin-btn{
+  width:100%;height:54px;border-radius:var(--r-sm);border:none;
+  background:linear-gradient(135deg,#1d4ed8,#1e3a8a);
+  color:#fff;font-family:'Raleway',sans-serif;font-size:16px;font-weight:900;
+  cursor:pointer;transition:all .18s;letter-spacing:.08em;text-transform:uppercase;
+  position:relative;overflow:hidden;
+  box-shadow:0 4px 24px rgba(37,99,235,.4);
+  margin-top:10px;
 }
-.card-title .icon {
-  width: 18px; height: 18px;
-  background: rgba(37,99,235,.2);
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
+.spin-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent);opacity:0;transition:opacity .15s;}
+.spin-btn:hover:not(:disabled)::before{opacity:1;}
+.spin-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,99,235,.55);}
+.spin-btn:active:not(:disabled){transform:scale(.98);}
+.spin-btn:disabled{opacity:.35;cursor:not-allowed;background:var(--surface2);box-shadow:none;}
+/* ═══════════════════════ TAGS ═══════════════════════ */
+.tags{
+  display:flex;flex-wrap:wrap;gap:5px;
+  min-height:36px;max-height:160px;overflow-y:auto;
+  align-content:flex-start;padding:2px;
 }
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
+.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(37,99,235,.1);border:1px solid rgba(96,165,250,.18);
+  color:#93c5fd;border-radius:100px;padding:3px 10px 3px 12px;
+  font-size:11px;font-weight:600;transition:border-color .12s;
 }
-.section-header .card-title { margin-bottom: 0; }
-
-/* ──────────────────────────────── FORM ── */
-input, textarea, select {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text);
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  outline: none;
-  transition: border-color .15s, box-shadow .15s;
+.tag:hover{border-color:rgba(96,165,250,.4);}
+.tag button{background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;line-height:1;padding:0;transition:color .12s;}
+.tag button:hover{color:var(--danger);}
+.tag-more{
+  display:inline-flex;align-items:center;
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);
+  color:var(--gold-l);border-radius:100px;padding:3px 12px;
+  font-size:11px;font-weight:700;cursor:pointer;
 }
-input:focus, textarea:focus, select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+.tag-more:hover{background:rgba(245,158,11,.2);}
+.empty-label{font-size:12px;color:var(--muted);font-style:italic;}
+.count-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(37,99,235,.18);border:1px solid var(--border2);
+  color:#93c5fd;border-radius:8px;padding:1px 8px;
+  font-size:10px;font-weight:800;margin-left:6px;
 }
-input::placeholder, textarea::placeholder { color: var(--text-m); }
-.row { display: flex; gap: 8px; }
-.row input { flex: 1; height: 40px; padding: 0 13px; }
-.input-full { width: 100%; height: 40px; padding: 0 13px; }
-textarea {
-  width: 100%; padding: 11px 13px;
-  resize: vertical; min-height: 96px;
-  line-height: 1.65;
+/* ═══════════════════════ STATS ═══════════════════════ */
+.stat-strip{display:flex;gap:8px;margin-bottom:12px;}
+.stat{
+  flex:1;background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:8px;text-align:center;
 }
-.input-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#93c5fd;line-height:1;}
+.stat-lbl{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:2px;}
+/* ═══════════════════════ WHEEL ═══════════════════════ */
+.panel-center .card{padding:1rem;}
+.prize-bar{
+  display:flex;align-items:center;gap:8px;
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:var(--r-sm);padding:8px 12px;
+  margin-bottom:10px;
 }
-.input-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-m);
-  margin-bottom: 5px;
-  letter-spacing: .04em;
-  text-transform: uppercase;
+.prize-bar-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;}
+.prize-pill{
+  flex:1;
+  padding:4px 12px;border-radius:100px;
+  font-size:13px;font-weight:700;
+  color:#fff;text-align:center;
+  transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-
-/* ──────────────────────────────── BUTTONS ── */
-.btn {
-  height: 40px;
-  padding: 0 18px;
-  border-radius: var(--radius-sm);
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all .15s;
-  white-space: nowrap;
-  border: 1px solid var(--border2);
-  background: var(--surface2);
-  color: var(--text);
-  letter-spacing: .01em;
+.wheel-wrap{
+  position:relative;display:flex;justify-content:center;align-items:center;
+  padding:.5rem 0;
 }
-.btn:hover { background: rgba(37,99,235,.2); border-color: var(--primary); color: var(--blue-l); }
-.btn:active { transform: scale(.97); }
-.btn-sm { height: 32px; padding: 0 13px; font-size: 12px; }
-.btn-primary {
-  background: var(--primary);
-  border-color: #1d4ed8;
-  color: #fff;
+canvas#wheelCanvas{display:block;border-radius:50%;}
+.pointer{
+  position:absolute;top:50%;right:calc(50% - var(--wheel-r,195px) - 2px);
+  transform:translateY(-50%);
+  width:0;height:0;
+  border-top:15px solid transparent;
+  border-bottom:15px solid transparent;
+  border-right:30px solid var(--gold);
+  z-index:10;
+  filter:drop-shadow(0 0 8px rgba(245,158,11,.8));
 }
-.btn-primary:hover { background: var(--primary-h); border-color: var(--primary); color: #fff; }
-.btn-danger { border-color: rgba(248,113,113,.35); color: var(--danger); }
-.btn-danger:hover { background: rgba(248,113,113,.12); border-color: var(--danger); }
-.btn-success { border-color: rgba(52,211,153,.35); color: var(--success); }
-.btn-success:hover { background: rgba(52,211,153,.12); border-color: var(--success); }
-.btn-gold {
-  background: linear-gradient(135deg, #d97706, #b45309);
-  border-color: #92400e;
-  color: #fff;
-  font-weight: 700;
+/* ═══════════════════════ PRIZE TOGGLE ═══════════════════════ */
+.toggle-row{
+  display:flex;align-items:center;gap:9px;
+  font-size:12px;color:var(--muted);cursor:pointer;user-select:none;
+  padding:7px 0;border-bottom:1px solid var(--border);
 }
-.btn-gold:hover { background: linear-gradient(135deg, #e8a020, #c05621); color: #fff; }
-
-.spin-btn {
-  width: 100%;
-  height: 52px;
-  border-radius: var(--radius-sm);
-  border: none;
-  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 50%, #1a3a8f 100%);
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all .18s;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(37,99,235,.4);
+.toggle-row:last-child{border-bottom:none;}
+.toggle-row input[type=checkbox]{accent-color:var(--primary);width:15px;height:15px;cursor:pointer;flex-shrink:0;}
+.toggle-row span{color:var(--text);font-weight:600;}
+/* ═══════════════════════ WINNER LIST ═══════════════════════ */
+.panel-right .card{padding:1rem 1.1rem;}
+.winner-list{
+  display:flex;flex-direction:column;gap:7px;
+  max-height:calc(100vh - 220px);overflow-y:auto;
+  min-height:60px;
 }
-.spin-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,.12), transparent);
-  opacity: 0;
-  transition: opacity .15s;
+.winner-entry{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 11px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;font-size:12px;
+  transition:all .3s;animation:slideIn .35s cubic-bezier(.34,1.56,.64,1);
 }
-.spin-btn:hover:not(:disabled)::before { opacity: 1; }
-.spin-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,99,235,.5); }
-.spin-btn:active:not(:disabled) { transform: scale(.98); }
-.spin-btn:disabled { opacity: .35; cursor: not-allowed; background: var(--surface2); box-shadow: none; }
-
-/* ──────────────────────────────── TAGS ── */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  min-height: 38px;
-  align-content: flex-start;
-  max-height: 180px;
-  overflow-y: auto;
-  padding: 2px;
+@keyframes slideIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+.winner-entry.fresh{
+  border-color:var(--gold);
+  box-shadow:0 0 14px rgba(245,158,11,.25);
+  background:rgba(245,158,11,.07);
 }
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(37,99,235,.12);
-  border: 1px solid rgba(96,165,250,.2);
-  color: var(--blue-l);
-  border-radius: 100px;
-  padding: 4px 10px 4px 13px;
-  font-size: 12px;
-  font-weight: 500;
-  transition: border-color .15s;
+.winner-rank{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
 }
-.tag:hover { border-color: rgba(96,165,250,.5); }
-.tag button {
-  background: none; border: none; cursor: pointer;
-  color: var(--text-m); font-size: 16px;
-  line-height: 1; padding: 0; transition: color .12s;
+.winner-info{flex:1;min-width:0;}
+.winner-name{font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);}
+.winner-prize{font-size:10px;color:var(--gold-l);font-weight:600;margin-top:1px;}
+.winner-badge{
+  font-size:9px;padding:3px 7px;border-radius:100px;
+  font-weight:700;flex-shrink:0;
 }
-.tag button:hover { color: var(--danger); }
-.tag-overflow {
-  display: inline-flex; align-items: center;
-  background: rgba(232,160,32,.1);
-  border: 1px solid rgba(232,160,32,.2);
-  color: var(--gold-l);
-  border-radius: 100px;
-  padding: 4px 13px;
-  font-size: 12px; font-weight: 600;
-  cursor: pointer;
+.winner-badge.removed{background:rgba(248,113,113,.12);color:var(--danger);}
+.winner-badge.kept{background:rgba(52,211,153,.12);color:var(--success);}
+.no-winners{font-size:12px;color:var(--muted);font-style:italic;padding:12px 0;text-align:center;}
+/* ═══════════════════════ HISTORY (toggle) ═══════════════════════ */
+.history-item{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;background:var(--surface2);
+  border:1px solid var(--border);border-radius:var(--r-sm);font-size:11px;
 }
-.tag-overflow:hover { background: rgba(232,160,32,.18); }
-.empty { font-size: 13px; color: var(--text-m); font-style: italic; }
-
-/* ──────────────────────────────── TOGGLE ── */
-.toggle-row {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; color: var(--text-m);
-  cursor: pointer; user-select: none;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
+.hi-num{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(37,99,235,.15);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;color:#93c5fd;flex-shrink:0;
+  font-family:'Raleway',sans-serif;
 }
-.toggle-row:last-child { border-bottom: none; padding-bottom: 0; }
-.toggle-row input[type=checkbox] {
-  accent-color: var(--primary);
-  width: 16px; height: 16px; cursor: pointer;
-  flex-shrink: 0;
+.hi-name{flex:1;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hi-prize{font-size:10px;color:var(--gold-l);}
+.hi-st{font-size:9px;padding:2px 7px;border-radius:100px;font-weight:700;flex-shrink:0;}
+.hi-st.removed{background:rgba(248,113,113,.12);color:var(--danger);}
+.hi-st.kept{background:rgba(52,211,153,.12);color:var(--success);}
+.history-list{display:flex;flex-direction:column;gap:5px;max-height:170px;overflow-y:auto;}
+/* ═══════════════════════ SETTINGS MODAL ═══════════════════════ */
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.82);z-index:200;
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);padding:1rem;
 }
-.toggle-row span { color: var(--text); font-weight: 500; }
-
-/* ──────────────────────────────── WHEEL ── */
-.wheel-wrap {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: .75rem 0;
+.overlay.show{display:flex;}
+.settings-modal{
+  background:linear-gradient(155deg,var(--surface) 0%,var(--bg) 100%);
+  border:1px solid var(--border2);border-radius:var(--r-lg);
+  width:100%;max-width:760px;max-height:90vh;display:flex;flex-direction:column;
+  box-shadow:0 40px 100px rgba(0,0,0,.7);overflow:hidden;
+  animation:popIn .35s cubic-bezier(.34,1.56,.64,1);
 }
-canvas#wheelCanvas {
-  display: block;
-  filter: drop-shadow(0 0 30px rgba(37,99,235,.3));
-  border-radius: 50%;
+@keyframes popIn{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+.settings-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.5rem;border-bottom:1px solid var(--border);flex-shrink:0;
 }
-/* Pointer — right side (3-o'clock = 0 rad) */
-.pointer {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: calc(50% - var(--wheel-r, 185px) - 4px);
-  width: 0; height: 0;
-  border-top: 14px solid transparent;
-  border-bottom: 14px solid transparent;
-  border-right: 28px solid var(--gold);
-  z-index: 10;
-  filter: drop-shadow(0 0 8px rgba(232,160,32,.8));
+.settings-title{font-family:'Raleway',sans-serif;font-size:18px;font-weight:900;letter-spacing:.01em;}
+.settings-close{
+  width:32px;height:32px;border-radius:50%;background:var(--surface2);
+  border:1px solid var(--border);color:var(--muted);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;
+  transition:all .15s;
 }
-
-/* ──────────────────────────────── COUNT BADGE ── */
-.count-badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(37,99,235,.2);
-  border: 1px solid rgba(96,165,250,.25);
-  color: var(--blue-l);
-  border-radius: 8px;
-  padding: 1px 8px;
-  font-size: 11px; font-weight: 700;
-  margin-left: 6px;
+.settings-close:hover{background:rgba(248,113,113,.15);border-color:var(--danger);color:var(--danger);}
+.settings-tabs{
+  display:flex;gap:4px;padding:.7rem 1.5rem;border-bottom:1px solid var(--border);
+  flex-shrink:0;overflow-x:auto;
 }
-
-/* ──────────────────────────────── HISTORY ── */
-.history-list {
-  display: flex; flex-direction: column; gap: 6px;
-  max-height: 230px; overflow-y: auto;
+.tab-btn{
+  padding:7px 16px;border-radius:var(--r-sm);
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
+  cursor:pointer;border:1px solid transparent;
+  color:var(--muted);background:transparent;transition:all .15s;white-space:nowrap;
 }
-.history-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 9px 12px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  transition: border-color .15s;
+.tab-btn:hover{color:var(--text);background:var(--surface2);}
+.tab-btn.active{background:rgba(37,99,235,.2);border-color:var(--border2);color:#93c5fd;}
+.tab-content{display:none;padding:1.2rem 1.5rem;overflow-y:auto;flex:1;}
+.tab-content.active{display:block;}
+.settings-footer{
+  padding:1rem 1.5rem;border-top:1px solid var(--border);
+  display:flex;justify-content:flex-end;gap:8px;flex-shrink:0;
 }
-.history-item:hover { border-color: var(--border2); }
-.hi-num {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: rgba(37,99,235,.15);
-  border: 1px solid rgba(96,165,250,.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 800;
-  color: var(--blue-l); flex-shrink: 0;
-  font-family: 'Montserrat', sans-serif;
+/* Settings internals */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr;}}
+.form-field{display:flex;flex-direction:column;gap:5px;}
+.logo-upload-area{
+  border:2px dashed var(--border2);border-radius:var(--r);
+  padding:20px;text-align:center;cursor:pointer;
+  transition:all .15s;background:var(--surface2);
+  position:relative;overflow:hidden;
 }
-.hi-name { flex: 1; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hi-prize { font-size: 11px; color: var(--gold-l); white-space: nowrap; }
-.hi-status { font-size: 11px; padding: 3px 9px; border-radius: 100px; flex-shrink: 0; font-weight: 600; }
-.hi-status.removed { background: rgba(248,113,113,.12); color: var(--danger); }
-.hi-status.kept    { background: rgba(52,211,153,.12);  color: var(--success); }
-.no-history { font-size: 13px; color: var(--text-m); font-style: italic; }
-
-/* ──────────────────────────────── MODAL ── */
-.modal-overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.8);
-  z-index: 200;
-  align-items: center; justify-content: center;
-  backdrop-filter: blur(8px);
+.logo-upload-area:hover{border-color:var(--primary);background:rgba(37,99,235,.08);}
+.logo-upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.logo-preview{
+  width:64px;height:64px;border-radius:10px;object-fit:cover;
+  margin:0 auto 8px;display:none;border:2px solid var(--border2);
 }
-.modal-overlay.show { display: flex; }
-.modal {
-  background: linear-gradient(155deg, #0e1f36 0%, #0a1628 60%, #0d1e35 100%);
-  border: 1px solid rgba(96,165,250,.25);
-  border-radius: 22px;
-  padding: 2.5rem 2rem 2rem;
-  max-width: 420px;
-  width: 92%;
-  text-align: center;
-  animation: popIn .45s cubic-bezier(.34,1.56,.64,1);
-  box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(96,165,250,.08);
-  position: relative;
-  overflow: hidden;
+.logo-text{font-size:12px;color:var(--muted);font-weight:600;}
+/* Theme picker */
+.theme-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
 }
-.modal::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), var(--primary), var(--gold), transparent);
+@media(max-width:600px){.theme-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:420px){.theme-grid{grid-template-columns:repeat(2,1fr);}}
+.theme-card{
+  border:2px solid var(--border);border-radius:12px;padding:10px 8px;
+  cursor:pointer;transition:all .2s;background:var(--surface2);text-align:center;
 }
-@keyframes popIn {
-  from { opacity:0; transform:scale(.75) translateY(20px); }
-  to   { opacity:1; transform:scale(1) translateY(0); }
+.theme-card:hover{border-color:var(--primary);transform:translateY(-2px);}
+.theme-card.active{border-color:var(--gold);box-shadow:0 0 16px rgba(245,158,11,.3);}
+.theme-card-emoji{font-size:22px;display:block;margin-bottom:5px;}
+.theme-card-name{font-size:10px;font-weight:800;color:var(--text);margin-bottom:2px;letter-spacing:.02em;}
+.theme-card-cat{font-size:9px;color:var(--muted);font-weight:600;}
+.theme-swatch{display:flex;gap:2px;justify-content:center;margin-top:6px;}
+.theme-swatch span{width:10px;height:10px;border-radius:3px;display:block;}
+/* Prize editor */
+.prize-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.prize-row{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;background:var(--surface2);
+  border:1px solid var(--border);border-radius:var(--r-sm);
 }
-.modal-crown { font-size: 56px; margin-bottom: 10px; display: block; animation: bounce .6s .4s both; }
-@keyframes bounce { 0%,100%{transform:scale(1)} 40%{transform:scale(1.2)} 70%{transform:scale(.95)} }
-.modal-lbl {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px; font-weight: 800;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--gold-l);
-  margin-bottom: 10px;
+.prize-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.prize-row-name{flex:1;font-size:13px;font-weight:700;}
+.prize-row-desc{font-size:11px;color:var(--muted);}
+.prize-active-badge{
+  font-size:9px;padding:2px 8px;border-radius:100px;
+  background:rgba(52,211,153,.15);color:var(--success);font-weight:700;flex-shrink:0;
 }
-.modal-event {
-  font-size: 12px;
-  color: var(--text-m);
-  margin-bottom: 6px;
-  font-weight: 500;
+.add-prize-form{
+  display:flex;gap:7px;flex-wrap:wrap;
+  padding:10px;background:var(--surface2);border-radius:var(--r-sm);
+  border:1px dashed var(--border2);
 }
-.modal-name {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 30px; font-weight: 900;
-  color: var(--text);
-  margin-bottom: 8px;
-  word-break: break-word;
-  line-height: 1.15;
-  text-shadow: 0 0 40px rgba(96,165,250,.3);
+.add-prize-form input{flex:1;min-width:100px;height:34px;padding:0 10px;font-size:12px;}
+/* ═══════════════════════ WINNER POPUP ═══════════════════════ */
+.winner-modal{
+  background:linear-gradient(155deg,var(--surface) 0%,var(--bg) 100%);
+  border:1px solid rgba(96,165,250,.2);border-radius:24px;
+  padding:2.5rem 2rem 2rem;
+  max-width:430px;width:92%;text-align:center;
+  animation:popIn .45s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 40px 100px rgba(0,0,0,.8);
+  position:relative;overflow:hidden;
 }
-.modal-prize {
-  font-size: 15px;
-  color: var(--gold-l);
-  margin-bottom: 26px;
-  min-height: 22px;
-  font-weight: 500;
+.winner-modal::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--primary),var(--gold),transparent);
 }
-.modal-acts { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.modal-acts .btn { flex: 1; min-width: 140px; height: 44px; font-size: 13px; }
-.modal-company-tag {
-  display: inline-block;
-  background: rgba(37,99,235,.15);
-  border: 1px solid rgba(96,165,250,.2);
-  color: var(--blue-l);
-  border-radius: 100px;
-  padding: 4px 14px;
-  font-size: 11px;
-  font-weight: 600;
-  margin-bottom: 18px;
-  letter-spacing: .04em;
+.winner-logo{
+  width:60px;height:60px;border-radius:14px;object-fit:cover;
+  margin:0 auto 14px;display:none;border:2px solid var(--border2);
 }
-
-/* ──────────────────────────────── CONFETTI ── */
-#confettiCanvas {
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 300;
+.winner-logo.show{display:block;}
+.winner-emoji{font-size:52px;display:block;margin-bottom:8px;animation:bounce .7s .3s both;}
+@keyframes bounce{0%,100%{transform:scale(1)}40%{transform:scale(1.25)}70%{transform:scale(.92)}}
+.winner-lbl{
+  font-family:'Raleway',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;
 }
-
-/* ──────────────────────────────── TOAST ── */
-#toast {
-  position: fixed; bottom: 2rem; left: 50%;
-  transform: translateX(-50%);
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  color: var(--text);
-  padding: 12px 24px;
-  border-radius: 100px;
-  font-size: 14px; font-weight: 500;
-  z-index: 400;
-  transition: opacity .3s;
-  pointer-events: none;
-  white-space: nowrap;
-  box-shadow: 0 8px 32px rgba(0,0,0,.5);
-  display: none;
+.winner-event-tag{
+  display:inline-block;background:rgba(37,99,235,.12);border:1px solid var(--border2);
+  color:#93c5fd;border-radius:100px;padding:3px 14px;
+  font-size:11px;font-weight:700;margin-bottom:12px;
 }
-
-/* ──────────────────────────────── FOOTER ── */
-.footer {
-  max-width: 980px;
-  margin: 2.5rem auto 0;
-  padding: 1.25rem 1rem;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: .75rem;
+.winner-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:42px;color:var(--text);line-height:1.05;
+  word-break:break-word;margin-bottom:8px;
+  text-shadow:0 0 40px rgba(96,165,250,.25);
 }
-.footer-copy {
-  font-size: 12px;
-  color: var(--text-m);
-  font-weight: 400;
+.winner-prize-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:6px 18px;border-radius:100px;font-size:13px;font-weight:800;
+  margin-bottom:24px;border:2px solid;color:#fff;
 }
-.footer-copy strong { color: var(--blue-l); font-weight: 600; }
-.footer-copy a {
-  color: var(--gold-l);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color .15s;
+.winner-acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.winner-acts .btn{flex:1;min-width:140px;height:44px;font-size:12px;}
+/* ═══════════════════════ CONFETTI ═══════════════════════ */
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:400;}
+/* ═══════════════════════ TOAST ═══════════════════════ */
+#toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
+  background:var(--surface);border:1px solid var(--border2);color:var(--text);
+  padding:11px 24px;border-radius:100px;font-size:13px;font-weight:600;
+  z-index:500;pointer-events:none;white-space:nowrap;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);display:none;transition:opacity .3s;
 }
-.footer-copy a:hover { color: #fff; }
-.footer-ver {
-  font-size: 11px;
-  color: rgba(139,168,204,.45);
-  letter-spacing: .08em;
+/* ═══════════════════════ FOOTER ═══════════════════════ */
+.app-footer{
+  max-width:1400px;margin:2rem auto 0;padding:1rem 1.5rem;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.5rem;
 }
-
-/* ──────────────────────────────── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(96,165,250,.15); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(96,165,250,.3); }
-
-/* ──────────────────────────────── STAT ROW ── */
-.stat-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-.stat-box {
-  flex: 1;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 12px;
-  text-align: center;
-}
-.stat-val {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--blue-l);
-  line-height: 1;
-}
-.stat-lbl {
-  font-size: 10px;
-  color: var(--text-m);
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin-top: 3px;
-}
-
-/* ──────────────────────────────── SETTINGS INDICATOR ── */
-.settings-saved {
-  font-size: 11px;
-  color: var(--success);
-  font-weight: 500;
-  opacity: 0;
-  transition: opacity .3s;
-  margin-left: auto;
-}
-.settings-saved.show { opacity: 1; }
+.footer-copy{font-size:11px;color:var(--muted);}
+.footer-copy strong{color:#93c5fd;font-weight:700;}
+.footer-copy a{color:var(--gold-l);text-decoration:none;font-weight:700;}
+.footer-copy a:hover{color:#fff;}
+.footer-ver{font-size:10px;color:rgba(107,137,181,.35);letter-spacing:.08em;}
+/* ═══════════════════════ SCROLLBAR ═══════════════════════ */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(96,165,250,.15);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(96,165,250,.3);}
 </style>
 </head>
 <body>
@@ -648,815 +486,1069 @@ canvas#wheelCanvas {
 <canvas id="confettiCanvas"></canvas>
 <div id="toast"></div>
 
-<!-- ═══════════════════════════════ WINNER MODAL ══ -->
-<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalName">
-  <div class="modal">
-    <span class="modal-crown" aria-hidden="true">🏆</span>
-    <div class="modal-lbl">🎉 We Have a Winner!</div>
-    <div class="modal-event" id="modalEventLabel"></div>
-    <div class="modal-name" id="modalName"></div>
-    <div class="modal-company-tag" id="modalCompanyTag" style="display:none;"></div>
-    <div class="modal-prize" id="modalPrize"></div>
-    <div class="modal-acts">
+<!-- ══════════════════ SETTINGS MODAL ══════════════════ -->
+<div class="overlay" id="settingsOverlay">
+  <div class="settings-modal">
+    <div class="settings-header">
+      <div class="settings-title">⚙️ Event Settings</div>
+      <button class="settings-close" onclick="closeSettings()" aria-label="Close settings">×</button>
+    </div>
+    <div class="settings-tabs">
+      <button class="tab-btn active" onclick="switchTab('branding')">🏢 Branding</button>
+      <button class="tab-btn" onclick="switchTab('prizes')">🏆 Prizes</button>
+      <button class="tab-btn" onclick="switchTab('theme')">🎨 Theme</button>
+      <button class="tab-btn" onclick="switchTab('options')">⚙️ Options</button>
+    </div>
+
+    <!-- Tab: Branding -->
+    <div class="tab-content active" id="tab-branding">
+      <div class="form-grid">
+        <div class="form-field">
+          <div class="inp-label">Company / Organisation Name</div>
+          <input id="s_company" class="inp" type="text" placeholder="e.g. Acme Corporation" maxlength="60"/>
+        </div>
+        <div class="form-field">
+          <div class="inp-label">Event Name</div>
+          <input id="s_event" class="inp" type="text" placeholder="e.g. Annual Gala 2025" maxlength="80"/>
+        </div>
+        <div class="form-field">
+          <div class="inp-label">Tagline / Subtitle</div>
+          <input id="s_tagline" class="inp" type="text" placeholder="e.g. Lucky Draw Night" maxlength="80"/>
+        </div>
+        <div class="form-field">
+          <div class="inp-label">Event Type</div>
+          <select id="s_type" class="inp">
+            <option>Corporate Event</option>
+            <option>School / Academic</option>
+            <option>College / University</option>
+            <option>Family Function</option>
+            <option>Birthday Party</option>
+            <option>Festival Celebration</option>
+            <option>Wedding / Reception</option>
+            <option>Team Building</option>
+            <option>Conference / Summit</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field" style="margin-bottom:14px;">
+        <div class="inp-label">Company Logo</div>
+        <div class="logo-upload-area" id="logoUploadArea">
+          <input type="file" accept="image/*" id="logoFileInput" onchange="handleLogoUpload(event)"/>
+          <img id="logoPreview" class="logo-preview" alt="Logo preview"/>
+          <div class="logo-text" id="logoUploadText">
+            <div style="font-size:20px;margin-bottom:4px;">📁</div>
+            Click or drag to upload company logo<br>
+            <span style="font-size:10px;opacity:.6;">PNG, JPG, SVG · Recommended 200×200px</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-danger" onclick="removeLogo()" id="removeLogoBtn" style="display:none;">✕ Remove Logo</button>
+    </div>
+
+    <!-- Tab: Prizes -->
+    <div class="tab-content" id="tab-prizes">
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.7;">Define prize levels for your event. The active prize will be awarded to each winner. You can change the active prize between spins.</p>
+      <div class="prize-list" id="prizeList"></div>
+      <div class="add-prize-form" id="addPrizeForm">
+        <input id="newPrizeName" placeholder="Prize name (e.g. 1st Prize)" maxlength="50"/>
+        <input id="newPrizeDesc" placeholder="Description (e.g. RM 1,000 Cash)" maxlength="80"/>
+        <input id="newPrizeEmoji" placeholder="Emoji" maxlength="4" style="width:70px;min-width:70px;text-align:center;font-size:18px;"/>
+        <button class="btn btn-sm btn-primary" onclick="addPrize()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- Tab: Theme -->
+    <div class="tab-content" id="tab-theme">
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.7;">Choose a theme to match your event. Each theme changes the wheel colors, background atmosphere and celebration style.</p>
+      <div class="theme-grid" id="themeGrid"></div>
+    </div>
+
+    <!-- Tab: Options -->
+    <div class="tab-content" id="tab-options">
+      <label class="toggle-row">
+        <input type="checkbox" id="o_confetti" checked/>
+        <span>Confetti celebration when winner is picked</span>
+      </label>
+      <label class="toggle-row">
+        <input type="checkbox" id="o_sound"/>
+        <span>Tick sound effect while wheel spins</span>
+      </label>
+      <label class="toggle-row">
+        <input type="checkbox" id="o_autoremove"/>
+        <span>Auto-remove winner from wheel (skip popup)</span>
+      </label>
+      <label class="toggle-row">
+        <input type="checkbox" id="o_autoprizecycle" checked/>
+        <span>Auto-advance to next prize after each removal</span>
+      </label>
+    </div>
+
+    <div class="settings-footer">
+      <button class="btn" onclick="closeSettings()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSettings()">💾 Save &amp; Apply</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ WINNER MODAL ══════════════════ -->
+<div class="overlay" id="winnerOverlay" role="dialog" aria-modal="true">
+  <div class="winner-modal">
+    <img id="wModalLogo" class="winner-logo" alt="Company logo"/>
+    <span class="winner-emoji" id="wEmoji">🏆</span>
+    <div class="winner-lbl">🎉 We Have a Winner!</div>
+    <div class="winner-event-tag" id="wEventTag" style="display:none;"></div>
+    <div class="winner-name" id="wName"></div>
+    <div class="winner-prize-tag" id="wPrizeTag" style="display:none;"></div>
+    <div class="winner-acts">
       <button class="btn btn-danger" onclick="handleWinner('remove')">✕ Remove from Wheel</button>
       <button class="btn btn-success" onclick="handleWinner('keep')">✓ Keep in Wheel</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════ TOP BANNER ══ -->
-<header class="top-banner" role="banner">
-  <div class="banner-brand">
-    <div class="brand-icon" id="brandIcon" title="Company Icon">LW</div>
-    <div class="brand-text">
-      <div class="brand-company" id="brandCompany">Lucky Wheel</div>
-      <div class="brand-event" id="brandEvent">Corporate Event Spinner</div>
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="app-header" role="banner">
+  <div class="header-brand">
+    <div id="logoWrap" onclick="openSettings();switchTab('branding');" title="Click to update logo">
+      <img id="headerLogoImg" style="display:none;width:100%;height:100%;object-fit:cover;" alt="Logo"/>
+      <span id="headerLogoText">LW</span>
+    </div>
+    <div class="brand-info">
+      <div class="brand-company" id="hCompany">LuckyWheel Pro</div>
+      <div class="brand-event" id="hEvent">Event Spinner · Ready to Spin</div>
     </div>
   </div>
-  <div class="banner-title">Spin · Win · Celebrate</div>
-  <div class="banner-right">
-    <div class="badge-pill" id="topBadge">⚡ Ready</div>
+  <div class="header-center" id="hType">Corporate Event</div>
+  <div class="header-actions">
+    <span id="hBadge" style="font-size:12px;color:var(--muted);font-weight:600;"></span>
+    <button class="btn-settings" onclick="openSettings()">⚙️ Edit Details</button>
   </div>
 </header>
 
-<!-- ═══════════════════════════════ MAIN ══ -->
-<main class="page-wrap" role="main">
-  <div class="layout">
+<!-- ══════════════════ MAIN BODY ══════════════════ -->
+<main class="app-body" role="main">
 
-    <!-- ══ LEFT COLUMN ══ -->
-    <div class="col">
+  <!-- LEFT PANEL -->
+  <div class="panel panel-left">
 
-      <!-- Event Setup -->
-      <div class="card">
-        <div class="card-title"><span class="icon">🏢</span> Event Setup</div>
-        <div class="input-group">
-          <div>
-            <div class="input-label">Company Name</div>
-            <input id="companyInput" class="input-full" type="text" placeholder="e.g. Acme Corp" maxlength="60" oninput="updateHeader()" aria-label="Company name"/>
-          </div>
-          <div>
-            <div class="input-label">Event Name</div>
-            <input id="eventInput" class="input-full" type="text" placeholder="e.g. Annual Gala 2025" maxlength="80" oninput="updateHeader()" aria-label="Event name"/>
-          </div>
-        </div>
-        <div>
-          <div class="input-label">Prize / Reward Label <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></div>
-          <input id="prizeInput" class="input-full" type="text" placeholder="e.g. RM500 Voucher · Paid Trip · Free Coffee…" maxlength="100" aria-label="Prize label"/>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
-          <button class="btn btn-sm btn-primary" onclick="saveSettings()">💾 Save Settings</button>
-          <span class="settings-saved" id="settingsSaved">✓ Saved</span>
-        </div>
+    <!-- Add Single -->
+    <div class="card">
+      <div class="card-title"><i>➕</i> Add Participant</div>
+      <div class="input-row">
+        <input id="nameInput" type="text" placeholder="Full name…" maxlength="60" aria-label="Participant name"/>
+        <button class="btn btn-primary" onclick="addSingle()">Add</button>
       </div>
-
-      <!-- Add Participant -->
-      <div class="card">
-        <div class="card-title"><span class="icon">➕</span> Add Participant</div>
-        <div class="row">
-          <input id="nameInput" type="text" placeholder="Enter full name…" maxlength="60" aria-label="Participant name"/>
-          <button class="btn btn-primary" onclick="addSingle()">Add</button>
-        </div>
-      </div>
-
-      <!-- Bulk Add -->
-      <div class="card">
-        <div class="card-title"><span class="icon">📋</span> Bulk Import <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-m);font-size:10px;"> — one name per line · Ctrl+Enter</span></div>
-        <textarea id="bulkInput" placeholder="Alice Johnson&#10;Bob Smith&#10;Charlie Brown&#10;Diana Prince&#10;…paste up to 1000 names"></textarea>
-        <div style="margin-top:9px;display:flex;gap:8px;">
-          <button class="btn btn-primary" style="flex:1;" onclick="addBulk()">Import All</button>
-          <button class="btn btn-sm" onclick="document.getElementById('bulkInput').value=''">Clear</button>
-        </div>
-      </div>
-
-      <!-- Participant List -->
-      <div class="card" style="flex:1;">
-        <div class="section-header">
-          <div class="card-title">
-            <span class="icon">👥</span>
-            Participants <span class="count-badge" id="countBadge" aria-live="polite">0</span>
-          </div>
-          <button class="btn btn-sm btn-danger" onclick="clearAll()" id="clearAllBtn" style="display:none;">Clear All</button>
-        </div>
-        <div class="stat-row">
-          <div class="stat-box">
-            <div class="stat-val" id="statTotal">0</div>
-            <div class="stat-lbl">Total</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="statSpins">0</div>
-            <div class="stat-lbl">Spins</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="statRemoved">0</div>
-            <div class="stat-lbl">Removed</div>
-          </div>
-        </div>
-        <div class="tags" id="tagList" role="list" aria-label="Participant list">
-          <span class="empty">No participants yet — add names above</span>
-        </div>
-      </div>
-
     </div>
 
-    <!-- ══ RIGHT COLUMN ══ -->
-    <div class="col">
-
-      <!-- Wheel -->
-      <div class="card">
-        <div class="section-header">
-          <div class="card-title"><span class="icon">🎡</span> Spin the Wheel</div>
-          <span id="wheelInfo" style="font-size:11px;color:var(--text-m);"></span>
-        </div>
-        <div class="wheel-wrap" id="wheelWrap">
-          <canvas id="wheelCanvas" width="370" height="370" aria-label="Lucky wheel" role="img"></canvas>
-          <div class="pointer" id="wheelPointer"></div>
-        </div>
-        <button class="spin-btn" id="spinBtn" onclick="spin()" disabled aria-label="Spin the wheel">
-          Add at least 2 participants
-        </button>
+    <!-- Bulk Import -->
+    <div class="card">
+      <div class="card-title"><i>📋</i> Bulk Import <span style="font-size:9px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);">— one per line · Ctrl+Enter</span></div>
+      <textarea id="bulkInput" placeholder="Alice Johnson&#10;Bob Smith&#10;Charlie Brown&#10;…paste up to 1000 names"></textarea>
+      <div class="input-row" style="margin-top:8px;">
+        <button class="btn btn-primary" style="flex:1;" onclick="addBulk()">Import All</button>
+        <button class="btn btn-sm" onclick="document.getElementById('bulkInput').value=''">Clear</button>
       </div>
+    </div>
 
-      <!-- Options -->
-      <div class="card">
-        <div class="card-title"><span class="icon">⚙️</span> Options</div>
-        <label class="toggle-row">
-          <input type="checkbox" id="autoRemoveToggle" onchange="saveStorage()"/>
-          <span>Auto-remove winner after spin (no popup)</span>
-        </label>
-        <label class="toggle-row">
-          <input type="checkbox" id="confettiToggle" checked onchange="saveStorage()"/>
-          <span>Confetti celebration on win</span>
-        </label>
-        <label class="toggle-row" style="border-bottom:none;">
-          <input type="checkbox" id="soundToggle" onchange="saveStorage()"/>
-          <span>Sound effects (tick while spinning)</span>
-        </label>
+    <!-- Participant List -->
+    <div class="card">
+      <div class="row-flex" style="margin-bottom:12px;">
+        <div class="card-title" style="margin-bottom:0;"><i>👥</i> Participants <span class="count-badge" id="countBadge" aria-live="polite">0</span></div>
+        <button class="btn btn-sm btn-danger" onclick="clearAll()" id="clearAllBtn" style="display:none;">Clear All</button>
       </div>
-
-      <!-- History -->
-      <div class="card" style="flex:1;">
-        <div class="section-header">
-          <div class="card-title">
-            <span class="icon">📜</span>
-            Winner History <span class="count-badge" id="historyBadge">0</span>
-          </div>
-          <button class="btn btn-sm" onclick="clearHistory()">Clear</button>
-        </div>
-        <div class="history-list" id="historyList" role="list" aria-label="Winner history">
-          <span class="no-history">No spins yet</span>
-        </div>
+      <div class="stat-strip">
+        <div class="stat"><div class="stat-val" id="sTotal">0</div><div class="stat-lbl">Total</div></div>
+        <div class="stat"><div class="stat-val" id="sSpins">0</div><div class="stat-lbl">Spins</div></div>
+        <div class="stat"><div class="stat-val" id="sRemoved">0</div><div class="stat-lbl">Removed</div></div>
       </div>
+      <div class="tags" id="tagList" role="list"><span class="empty-label">No participants yet</span></div>
+    </div>
 
+  </div>
+
+  <!-- CENTER PANEL -->
+  <div class="panel panel-center">
+    <div class="card">
+      <div class="prize-bar">
+        <span class="prize-bar-lbl">Now Awarding:</span>
+        <span class="prize-pill" id="activePrizePill">—</span>
+        <button class="btn btn-sm" onclick="cyclePrize()" title="Cycle to next prize">↻</button>
+      </div>
+      <div class="wheel-wrap" id="wheelWrap">
+        <canvas id="wheelCanvas" width="520" height="520" aria-label="Spinning wheel" role="img"></canvas>
+        <div class="pointer" id="wheelPointer"></div>
+      </div>
+      <button class="spin-btn" id="spinBtn" onclick="spin()" disabled>Add at least 2 participants</button>
+    </div>
+
+    <!-- Quick Options -->
+    <div class="card">
+      <div class="card-title"><i>⚡</i> Quick Options</div>
+      <label class="toggle-row"><input type="checkbox" id="q_confetti" checked onchange="syncFromQuick('confetti')"/><span>Confetti on win</span></label>
+      <label class="toggle-row"><input type="checkbox" id="q_sound" onchange="syncFromQuick('sound')"/><span>Spin sound effect</span></label>
+      <label class="toggle-row" style="border-bottom:none;"><input type="checkbox" id="q_autoremove" onchange="syncFromQuick('autoremove')"/><span>Auto-remove winner</span></label>
     </div>
   </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel panel-right">
+
+    <!-- Live Winners -->
+    <div class="card">
+      <div class="row-flex" style="margin-bottom:12px;">
+        <div class="card-title" style="margin-bottom:0;"><i>🏆</i> Winners <span class="count-badge" id="winnerCount">0</span></div>
+        <button class="btn btn-sm" onclick="clearWinners()">Clear</button>
+      </div>
+      <div class="winner-list" id="winnerList" role="list">
+        <div class="no-winners">No winners yet.<br>Spin the wheel to begin!</div>
+      </div>
+    </div>
+
+    <!-- Spin History -->
+    <div class="card">
+      <div class="row-flex" style="margin-bottom:10px;">
+        <div class="card-title" style="margin-bottom:0;"><i>📜</i> Spin Log <span class="count-badge" id="histBadge">0</span></div>
+        <button class="btn btn-sm" onclick="clearHistory()">Clear</button>
+      </div>
+      <div class="history-list" id="historyList"><span style="font-size:11px;color:var(--muted);font-style:italic;">No spins yet</span></div>
+    </div>
+
+  </div>
+
 </main>
 
-<!-- ═══════════════════════════════ FOOTER ══ -->
-<footer class="footer" role="contentinfo">
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="app-footer" role="contentinfo">
   <div class="footer-copy">
-    &copy; <span id="footerYear"></span> <strong>Sutahhar Jegatheesan</strong>
-    &nbsp;·&nbsp;
+    &copy; <span id="fyear"></span> <strong>Sutahhar Jegatheesan</strong> &nbsp;·&nbsp;
     <a href="https://www.msdevbuild.com" target="_blank" rel="noopener noreferrer">www.msdevbuild.com</a>
     &nbsp;·&nbsp; All rights reserved.
   </div>
-  <div class="footer-ver">Lucky Wheel v2.0 · Data stored locally in your browser</div>
+  <div class="footer-ver">LuckyWheel Pro v3.0 · Data stored in your browser</div>
 </footer>
 
-<!-- ═══════════════════════════════ SCRIPT ══ -->
 <script>
-/* ────────────────────────── STATE ── */
+/* ════════════════════════════════════════
+   THEMES
+════════════════════════════════════════ */
+const THEMES = {
+  corporate:{
+    name:'Corporate Blue',emoji:'💼',cat:'Office & Business',
+    bg:'radial-gradient(ellipse 80% 60% at 50% -10%,rgba(37,99,235,.18) 0%,transparent 65%),linear-gradient(135deg,#040d1b,#08152a)',
+    vars:{'--bg':'#040d1b','--surface':'#081525','--surface2':'#0c1e33','--border':'rgba(96,165,250,.12)','--border2':'rgba(96,165,250,.24)','--primary':'#2563eb','--accent':'#3b82f6','--gold':'#f59e0b','--gold-l':'#fbbf24','--text':'#e8f0fe','--muted':'#6b89b5'},
+    wheel:['#1d4ed8','#1e40af','#1565c0','#0277bd','#006064','#00695c','#2e7d32','#1b5e20','#e65100','#b45309','#b71c1c','#7c2d12','#4a148c','#1a237e','#0d47a1','#006d75'],
+    confetti:['#2563eb','#3b82f6','#60a5fa','#fbbf24','#34d399','#fff'],
+    rim:'rgba(96,165,250,.35)',winEmoji:'🏆'
+  },
+  diwali:{
+    name:'Diwali',emoji:'🪔',cat:'Indian Festival',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(234,88,12,.22) 0%,transparent 60%),linear-gradient(135deg,#150600,#2d1000)',
+    vars:{'--bg':'#150600','--surface':'#2d1000','--surface2':'#3d1a00','--border':'rgba(251,146,60,.15)','--border2':'rgba(251,146,60,.28)','--primary':'#ea580c','--accent':'#f97316','--gold':'#fbbf24','--gold-l':'#fcd34d','--text':'#fff8ed','--muted':'#c4834a'},
+    wheel:['#dc2626','#ea580c','#d97706','#b45309','#92400e','#7c2d12','#c2410c','#f59e0b','#991b1b','#a16207','#ea580c','#dc2626','#b45309','#92400e','#d97706','#c2410c'],
+    confetti:['#ea580c','#f59e0b','#fcd34d','#dc2626','#f97316','#fff'],
+    rim:'rgba(252,211,77,.45)',winEmoji:'🪔'
+  },
+  chinese_ny:{
+    name:'Chinese New Year',emoji:'🧧',cat:'Chinese Festival',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(220,38,38,.25) 0%,transparent 60%),linear-gradient(135deg,#1a0000,#2d0000)',
+    vars:{'--bg':'#1a0000','--surface':'#2d0000','--surface2':'#3d0800','--border':'rgba(251,191,36,.18)','--border2':'rgba(251,191,36,.32)','--primary':'#dc2626','--accent':'#ef4444','--gold':'#fbbf24','--gold-l':'#fde68a','--text':'#fff8e7','--muted':'#c4746a'},
+    wheel:['#dc2626','#b91c1c','#991b1b','#7f1d1d','#ea580c','#c2410c','#9a3412','#b45309','#dc2626','#b91c1c','#991b1b','#7f1d1d','#ea580c','#c2410c','#9a3412','#b45309'],
+    confetti:['#dc2626','#ef4444','#fbbf24','#fde68a','#fff','#f59e0b'],
+    rim:'rgba(251,191,36,.55)',winEmoji:'🧧'
+  },
+  hari_raya:{
+    name:'Hari Raya / Eid',emoji:'🌙',cat:'Islamic Festival',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(5,150,105,.2) 0%,transparent 60%),linear-gradient(135deg,#001a08,#002d12)',
+    vars:{'--bg':'#001a08','--surface':'#002d12','--surface2':'#00381a','--border':'rgba(52,211,153,.15)','--border2':'rgba(52,211,153,.28)','--primary':'#059669','--accent':'#10b981','--gold':'#fbbf24','--gold-l':'#fcd34d','--text':'#f0fdf4','--muted':'#4d9970'},
+    wheel:['#059669','#047857','#065f46','#064e3b','#0d9488','#0f766e','#115e59','#16a34a','#15803d','#166534','#14532d','#059669','#047857','#0d9488','#065f46','#0f766e'],
+    confetti:['#059669','#10b981','#34d399','#6ee7b7','#fbbf24','#fff'],
+    rim:'rgba(52,211,153,.45)',winEmoji:'🌙'
+  },
+  christmas:{
+    name:'Christmas',emoji:'🎄',cat:'Global Festival',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(220,38,38,.18) 0%,transparent 60%),linear-gradient(135deg,#001a00,#002000)',
+    vars:{'--bg':'#001a00','--surface':'#002800','--surface2':'#003400','--border':'rgba(220,38,38,.2)','--border2':'rgba(220,38,38,.35)','--primary':'#dc2626','--accent':'#ef4444','--gold':'#fbbf24','--gold-l':'#fcd34d','--text':'#f0fff0','--muted':'#4d8a4d'},
+    wheel:['#dc2626','#b91c1c','#166534','#15803d','#16a34a','#b45309','#92400e','#dc2626','#b91c1c','#166534','#15803d','#16a34a','#b45309','#991b1b','#14532d','#78350f'],
+    confetti:['#dc2626','#16a34a','#fbbf24','#ef4444','#22c55e','#fff'],
+    rim:'rgba(220,38,38,.45)',winEmoji:'🎄'
+  },
+  holi:{
+    name:'Holi',emoji:'🎨',cat:'Indian Spring Festival',
+    bg:'radial-gradient(ellipse at 25% 50%,rgba(168,85,247,.18) 0%,transparent 50%),radial-gradient(ellipse at 75% 50%,rgba(236,72,153,.18) 0%,transparent 50%),linear-gradient(135deg,#0a0015,#0f0020)',
+    vars:{'--bg':'#0a0015','--surface':'#150025','--surface2':'#1e0030','--border':'rgba(167,139,250,.18)','--border2':'rgba(167,139,250,.32)','--primary':'#a855f7','--accent':'#c084fc','--gold':'#fbbf24','--gold-l':'#fde68a','--text':'#faf5ff','--muted':'#9d77c0'},
+    wheel:['#dc2626','#ea580c','#d97706','#16a34a','#2563eb','#7c3aed','#db2777','#0891b2','#059669','#b45309','#4f46e5','#be185d','#c2410c','#047857','#1d4ed8','#9333ea'],
+    confetti:['#ef4444','#f97316','#eab308','#22c55e','#3b82f6','#a855f7','#ec4899','#fff'],
+    rim:'rgba(192,132,252,.45)',winEmoji:'🎨'
+  },
+  birthday:{
+    name:'Birthday Party',emoji:'🎂',cat:'Celebrations',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(236,72,153,.22) 0%,transparent 60%),linear-gradient(135deg,#0f0018,#1a0028)',
+    vars:{'--bg':'#0f0018','--surface':'#1a0028','--surface2':'#240035','--border':'rgba(236,72,153,.18)','--border2':'rgba(236,72,153,.32)','--primary':'#ec4899','--accent':'#f472b6','--gold':'#fbbf24','--gold-l':'#fde68a','--text':'#fdf4ff','--muted':'#b06aac'},
+    wheel:['#ec4899','#db2777','#be185d','#a855f7','#9333ea','#7c3aed','#6d28d9','#f472b6','#e879f9','#c026d3','#a21caf','#ec4899','#db2777','#be185d','#f43f5e','#fb7185'],
+    confetti:['#ec4899','#f472b6','#a855f7','#fbbf24','#60a5fa','#34d399','#fff'],
+    rim:'rgba(244,114,182,.45)',winEmoji:'🎂'
+  },
+  school:{
+    name:'School / Academic',emoji:'🎓',cat:'Education',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(29,78,216,.22) 0%,transparent 60%),linear-gradient(135deg,#001030,#001840)',
+    vars:{'--bg':'#001030','--surface':'#001a45','--surface2':'#002055','--border':'rgba(250,204,21,.14)','--border2':'rgba(250,204,21,.28)','--primary':'#1d4ed8','--accent':'#3b82f6','--gold':'#facc15','--gold-l':'#fde047','--text':'#fffbeb','--muted':'#6a8ec4'},
+    wheel:['#1d4ed8','#1e40af','#b45309','#166534','#b91c1c','#0891b2','#7c3aed','#1d4ed8','#1e40af','#b45309','#166534','#b91c1c','#0891b2','#7c3aed','#0d9488','#92400e'],
+    confetti:['#1d4ed8','#facc15','#3b82f6','#fbbf24','#fff','#60a5fa'],
+    rim:'rgba(250,204,21,.45)',winEmoji:'🎓'
+  },
+  halloween:{
+    name:'Halloween',emoji:'🎃',cat:'Global Festival',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(124,45,237,.2) 0%,transparent 60%),linear-gradient(135deg,#050008,#0d0018)',
+    vars:{'--bg':'#050008','--surface':'#0d0018','--surface2':'#160020','--border':'rgba(249,115,22,.18)','--border2':'rgba(249,115,22,.32)','--primary':'#f97316','--accent':'#fb923c','--gold':'#a855f7','--gold-l':'#c084fc','--text':'#fff7ed','--muted':'#9165a0'},
+    wheel:['#f97316','#ea580c','#c2410c','#9a3412','#7c3aed','#6d28d9','#5b21b6','#4c1d95','#f97316','#ea580c','#c2410c','#9a3412','#7c3aed','#6d28d9','#5b21b6','#4c1d95'],
+    confetti:['#f97316','#fb923c','#a855f7','#c084fc','#fbbf24','#fff'],
+    rim:'rgba(249,115,22,.45)',winEmoji:'🎃'
+  },
+  new_year:{
+    name:'New Year',emoji:'🎆',cat:'Global Celebration',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(212,175,55,.18) 0%,transparent 60%),linear-gradient(135deg,#000510,#000d1a)',
+    vars:{'--bg':'#000510','--surface':'#000d1a','--surface2':'#001428','--border':'rgba(212,175,55,.18)','--border2':'rgba(212,175,55,.32)','--primary':'#d4af37','--accent':'#fbbf24','--gold':'#ffd700','--gold-l':'#fde68a','--text':'#fffdf0','--muted':'#8a7840'},
+    wheel:['#1f2937','#111827','#0f172a','#1e3a5f','#162032','#0d1b2a','#1a1a2e','#2d3561','#16213e','#0f3460','#1f2937','#111827','#0f172a','#1e3a5f','#162032','#0d1b2a'],
+    confetti:['#d4af37','#ffd700','#fbbf24','#fff','#e5e7eb','#c0c0c0'],
+    rim:'rgba(212,175,55,.55)',winEmoji:'🎆'
+  },
+  malaysia:{
+    name:'Malaysia / Merdeka',emoji:'🇲🇾',cat:'Malaysian Festival',
+    bg:'radial-gradient(ellipse 80% 50% at 50% -5%,rgba(204,0,0,.2) 0%,transparent 60%),linear-gradient(135deg,#0a0010,#14001e)',
+    vars:{'--bg':'#0a0010','--surface':'#14001e','--surface2':'#1e002a','--border':'rgba(204,0,0,.2)','--border2':'rgba(255,215,0,.3)','--primary':'#cc0001','--accent':'#ff0000','--gold':'#ffd700','--gold-l':'#ffc300','--text':'#fff9f0','--muted':'#8a6060'},
+    wheel:['#cc0001','#b00001','#004a9e','#003580','#cc0001','#b00001','#004a9e','#003580','#cc0001','#b00001','#004a9e','#003580','#cc0001','#b00001','#004a9e','#003580'],
+    confetti:['#cc0001','#ffd700','#004a9e','#fff','#ff0000','#ffc300'],
+    rim:'rgba(255,215,0,.55)',winEmoji:'🌟'
+  },
+  deepavali:{
+    name:'Deepavali',emoji:'✨',cat:'Malaysian Indian Festival',
+    bg:'radial-gradient(ellipse at 30% 50%,rgba(217,119,6,.2) 0%,transparent 50%),radial-gradient(ellipse at 70% 50%,rgba(220,38,38,.2) 0%,transparent 50%),linear-gradient(135deg,#0a0005,#150a00)',
+    vars:{'--bg':'#0a0005','--surface':'#150a00','--surface2':'#1e1200','--border':'rgba(251,191,36,.15)','--border2':'rgba(251,191,36,.28)','--primary':'#d97706','--accent':'#f59e0b','--gold':'#fcd34d','--gold-l':'#fde68a','--text':'#fffbeb','--muted':'#a07030'},
+    wheel:['#d97706','#b45309','#92400e','#78350f','#dc2626','#b91c1c','#7c3aed','#0891b2','#d97706','#b45309','#92400e','#78350f','#dc2626','#b91c1c','#7c3aed','#0891b2'],
+    confetti:['#d97706','#f59e0b','#fcd34d','#dc2626','#a855f7','#34d399','#fff'],
+    rim:'rgba(252,211,77,.45)',winEmoji:'✨'
+  },
+};
+
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
 let names       = [];
+let prizes      = [
+  {id:1,emoji:'🥇',name:'1st Prize',desc:'Grand Prize',color:'#d4af37'},
+  {id:2,emoji:'🥈',name:'2nd Prize',desc:'Runner-up',color:'#9ca3af'},
+  {id:3,emoji:'🥉',name:'3rd Prize',desc:'Second Runner-up',color:'#b45309'},
+  {id:4,emoji:'🎖️',name:'Consolation',desc:'Consolation Prize',color:'#4f46e5'},
+];
+let activePrizeIdx = 0;
+let currentTheme= 'corporate';
+let logoDataUrl = '';
 let spinning    = false;
 let currentAngle= 0;
 let pendingIdx  = null;
-let winHistory  = [];
+let winners     = [];
+let spinLog     = [];
 let spinCount   = 0;
 let removedCount= 0;
 let showAllTags = false;
-const TAG_LIMIT = 80; // show first N tags, then "+X more"
+const TAG_LIMIT = 60;
+let audioCtx    = null;
 
-const WHEEL_COLORS = [
-  '#1d4ed8','#1e40af','#1565c0','#0277bd',
-  '#006064','#00695c','#2e7d32','#1b5e20',
-  '#e65100','#bf360c','#b71c1c','#880e4f',
-  '#4a148c','#311b92','#1a237e','#0d47a1',
-  '#37474f','#263238','#004d40','#33691e',
-];
-
-/* ────────────────────────── CANVAS SETUP ── */
+/* ════════════════════════════════════════
+   CANVAS
+════════════════════════════════════════ */
 const canvas = document.getElementById('wheelCanvas');
 const ctx    = canvas.getContext('2d');
 let CX, CY, R;
 
-function setupCanvas() {
-  // Responsive canvas: max 370, scale with container
-  const wrap     = document.getElementById('wheelWrap');
-  const available= Math.min(wrap.clientWidth - 40, 370);
-  const size     = Math.max(available, 200);
-  canvas.width   = size;
-  canvas.height  = size;
-  CX = size / 2;
-  CY = size / 2;
+function setupCanvas(){
+  const wrap = document.getElementById('wheelWrap');
+  const avail= Math.min(wrap.clientWidth - 32, 520);
+  const size = Math.max(avail, 220);
+  canvas.width = canvas.height = size;
+  CX = CY = size / 2;
   R  = size / 2 - 8;
-  // Update pointer position (pointer sits at the right edge of wheel)
-  document.getElementById('wheelPointer').style.right =
-    `calc(50% - ${R + 4}px)`;
-  document.documentElement.style.setProperty('--wheel-r', (R + 4) + 'px');
+  document.getElementById('wheelPointer').style.right = `calc(50% - ${R + 3}px)`;
+  document.documentElement.style.setProperty('--wheel-r', (R + 3) + 'px');
 }
 
-/* ────────────────────────── DRAW WHEEL ── */
-function drawWheel(angle) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+function drawWheel(angle){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const t = THEMES[currentTheme];
 
-  if (!names.length) {
-    // Empty state
-    ctx.beginPath();
-    ctx.arc(CX, CY, R, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(37,99,235,.06)';
-    ctx.fill();
-    // Dashed border
-    ctx.setLineDash([6, 4]);
-    ctx.strokeStyle = 'rgba(96,165,250,.2)';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
+  if(!names.length){
+    ctx.beginPath(); ctx.arc(CX,CY,R,0,Math.PI*2);
+    ctx.fillStyle='rgba(37,99,235,.05)'; ctx.fill();
+    ctx.setLineDash([6,4]);
+    ctx.strokeStyle='rgba(96,165,250,.2)'; ctx.lineWidth=1.5; ctx.stroke();
     ctx.setLineDash([]);
-    // Text
-    ctx.fillStyle = '#6b89b0';
-    ctx.font = '500 14px Outfit,sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('Add names to begin', CX, CY);
-    // Center hub
-    drawHub();
-    return;
+    ctx.fillStyle='#5a7090'; ctx.font='500 14px Nunito,sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('Add names to begin',CX,CY);
+    drawHub(t); return;
   }
 
   const n     = names.length;
-  const slice = (Math.PI * 2) / n;
+  const slice = (Math.PI*2) / n;
+  const cols  = t.wheel;
 
-  names.forEach((name, i) => {
-    const start = angle + i * slice;
-    const end   = start + slice;
+  names.forEach((name,i)=>{
+    const start = angle + i*slice, end = start + slice;
+    // Slightly lighter alternating shade for readability
+    const base = cols[i % cols.length];
+    ctx.beginPath(); ctx.moveTo(CX,CY); ctx.arc(CX,CY,R,start,end); ctx.closePath();
+    ctx.fillStyle = base; ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.28)'; ctx.lineWidth=1.2; ctx.stroke();
 
-    // Slice
-    ctx.beginPath();
-    ctx.moveTo(CX, CY);
-    ctx.arc(CX, CY, R, start, end);
-    ctx.closePath();
-    ctx.fillStyle = WHEEL_COLORS[i % WHEEL_COLORS.length];
-    ctx.fill();
+    // Label
+    ctx.save();
+    ctx.translate(CX,CY); ctx.rotate(start+slice/2);
+    ctx.textAlign='right'; ctx.textBaseline='middle';
+    ctx.shadowColor='rgba(0,0,0,.6)'; ctx.shadowBlur=4;
+    ctx.fillStyle='rgba(255,255,255,.95)';
 
-    // Slice border
-    ctx.strokeStyle = 'rgba(0,0,0,.35)';
-    ctx.lineWidth   = 1.2;
-    ctx.stroke();
-
-    // Label — adaptive based on count
-    drawLabel(name, i, n, angle, slice);
+    if(n>200){
+      // dots only
+      ctx.beginPath(); ctx.arc(R-18,0,3,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,.5)'; ctx.fill();
+    } else if(n>80){
+      ctx.font=`800 9px Raleway,sans-serif`;
+      ctx.fillText(String(i+1), R-14, 0);
+    } else if(n>30){
+      const ini = name.split(' ').map(w=>w[0]||'').slice(0,2).join('').toUpperCase();
+      ctx.font=`700 ${n>50?9:11}px Raleway,sans-serif`;
+      ctx.fillText(ini, R-12, 0);
+    } else {
+      const mc = n>20?10:n>10?14:18;
+      const fs = n>20?10:n>10?12:13;
+      const label = name.length>mc ? name.slice(0,mc)+'…' : name;
+      ctx.font=`600 ${fs}px Nunito,sans-serif`;
+      ctx.fillText(label, R-10, 0);
+    }
+    ctx.restore();
   });
 
-  // Outer ring
-  ctx.beginPath();
-  ctx.arc(CX, CY, R, 0, Math.PI * 2);
-  ctx.strokeStyle = 'rgba(96,165,250,.3)';
-  ctx.lineWidth   = 2.5;
-  ctx.stroke();
+  // Outer rim
+  ctx.beginPath(); ctx.arc(CX,CY,R,0,Math.PI*2);
+  ctx.strokeStyle=t.rim; ctx.lineWidth=3; ctx.stroke();
 
-  drawHub();
+  drawHub(t);
 }
 
-function drawLabel(name, i, total, angle, slice) {
-  const mid = angle + i * slice + slice / 2;
-  ctx.save();
-  ctx.translate(CX, CY);
-  ctx.rotate(mid);
-  ctx.textAlign    = 'right';
-  ctx.textBaseline = 'middle';
-  ctx.fillStyle    = 'rgba(255,255,255,.95)';
-  ctx.shadowColor  = 'rgba(0,0,0,.6)';
-  ctx.shadowBlur   = 4;
-
-  if (total > 200) {
-    // Just a dot for massive lists
-    ctx.beginPath();
-    ctx.arc(R - 18, 0, 3, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,255,255,.6)';
-    ctx.fill();
-  } else if (total > 80) {
-    // Slice number only
-    ctx.font = `700 9px Montserrat,sans-serif`;
-    ctx.fillText(String(i + 1), R - 14, 0);
-  } else if (total > 30) {
-    // Initials (up to 2 chars)
-    const initials = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
-    const fs = total > 50 ? 9 : 11;
-    ctx.font = `700 ${fs}px Montserrat,sans-serif`;
-    ctx.fillText(initials, R - 12, 0);
-  } else {
-    // Full name (truncated)
-    const maxChars = total > 15 ? 10 : total > 8 ? 14 : 18;
-    const fs = total > 20 ? 10 : total > 10 ? 12 : 13;
-    const label = name.length > maxChars ? name.slice(0, maxChars) + '…' : name;
-    ctx.font = `500 ${fs}px Outfit,sans-serif`;
-    ctx.fillText(label, R - 10, 0);
-  }
-
-  ctx.restore();
-}
-
-function drawHub() {
-  // Outer ring of hub
-  ctx.beginPath();
-  ctx.arc(CX, CY, 26, 0, Math.PI * 2);
-  ctx.fillStyle = '#0a1628';
+function drawHub(t){
+  if(!t) t = THEMES[currentTheme];
+  ctx.beginPath(); ctx.arc(CX,CY,28,0,Math.PI*2);
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#040d1b';
   ctx.fill();
-  ctx.strokeStyle = 'rgba(96,165,250,.4)';
-  ctx.lineWidth   = 2;
-  ctx.stroke();
-
-  // Inner hub
-  ctx.beginPath();
-  ctx.arc(CX, CY, 18, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(37,99,235,.25)';
-  ctx.fill();
-
-  // Center dot
-  ctx.beginPath();
-  ctx.arc(CX, CY, 6, 0, Math.PI * 2);
-  ctx.fillStyle = '#2563eb';
-  ctx.fill();
+  ctx.strokeStyle = t.rim; ctx.lineWidth=2.5; ctx.stroke();
+  ctx.beginPath(); ctx.arc(CX,CY,18,0,Math.PI*2);
+  ctx.fillStyle='rgba(37,99,235,.2)'; ctx.fill();
+  ctx.beginPath(); ctx.arc(CX,CY,8,0,Math.PI*2);
+  ctx.fillStyle=t.vars['--primary']||'#2563eb'; ctx.fill();
 }
 
-/* ────────────────────────── HEADER UPDATE ── */
-function updateHeader() {
-  const company = document.getElementById('companyInput').value.trim();
-  const event   = document.getElementById('eventInput').value.trim();
-
-  document.getElementById('brandCompany').textContent = company || 'Lucky Wheel';
-  document.getElementById('brandEvent').textContent   = event   || 'Corporate Event Spinner';
-
-  const initials = company
-    ? company.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()
-    : 'LW';
-  document.getElementById('brandIcon').textContent = initials;
-}
-
-/* ────────────────────────── ADD / REMOVE NAMES ── */
-function addSingle() {
-  const input = document.getElementById('nameInput');
-  const val   = input.value.trim();
-  if (!val) return;
-  if (!names.includes(val)) {
-    names.push(val);
-    updateUI();
-    drawWheel(currentAngle);
-    saveStorage();
-  }
-  input.value = '';
-  input.focus();
-}
-
-function addBulk() {
-  const ta    = document.getElementById('bulkInput');
-  const lines = ta.value.split('\n').map(l => l.trim()).filter(Boolean);
-  let added   = 0;
-  lines.forEach(n => {
-    if (!names.includes(n)) { names.push(n); added++; }
-  });
-  ta.value = '';
-  if (added > 0) {
-    showToast(`✅ Added ${added} participant${added > 1 ? 's' : ''}`);
-    updateUI();
-    drawWheel(currentAngle);
-    saveStorage();
-  }
-}
-
-function removeName(i) {
-  names.splice(i, 1);
-  updateUI();
+/* ════════════════════════════════════════
+   THEME
+════════════════════════════════════════ */
+function applyTheme(key){
+  currentTheme = key;
+  const t = THEMES[key];
+  document.body.style.background = t.bg;
+  const root = document.documentElement;
+  Object.entries(t.vars).forEach(([k,v]) => root.style.setProperty(k,v));
   drawWheel(currentAngle);
   saveStorage();
 }
 
-function clearAll() {
-  if (!confirm(`Remove all ${names.length} participants? This cannot be undone.`)) return;
-  names = [];
-  updateUI();
-  drawWheel(currentAngle);
+function renderThemeGrid(){
+  const g = document.getElementById('themeGrid');
+  g.innerHTML = '';
+  Object.entries(THEMES).forEach(([key,t])=>{
+    const card = document.createElement('div');
+    card.className = 'theme-card' + (key===currentTheme?' active':'');
+    card.onclick = ()=>{ applyTheme(key); renderThemeGrid(); };
+    const swatch = t.wheel.slice(0,5).map(c=>`<span style="background:${c}"></span>`).join('');
+    card.innerHTML = `
+      <span class="theme-card-emoji">${t.emoji}</span>
+      <div class="theme-card-name">${t.name}</div>
+      <div class="theme-card-cat">${t.cat}</div>
+      <div class="theme-swatch">${swatch}</div>`;
+    g.appendChild(card);
+  });
+}
+
+/* ════════════════════════════════════════
+   SETTINGS MODAL
+════════════════════════════════════════ */
+function openSettings(){
+  // Populate fields from state
+  document.getElementById('s_company').value = document.getElementById('hCompany').textContent==='LuckyWheel Pro'?'':document.getElementById('hCompany').textContent;
+  document.getElementById('s_event').value   = '';
+  const ev = document.getElementById('hEvent').textContent;
+  if(ev !== 'Event Spinner · Ready to Spin') document.getElementById('s_event').value = ev;
+  // Options
+  document.getElementById('o_confetti').checked   = document.getElementById('q_confetti').checked;
+  document.getElementById('o_sound').checked      = document.getElementById('q_sound').checked;
+  document.getElementById('o_autoremove').checked = document.getElementById('q_autoremove').checked;
+
+  renderThemeGrid();
+  renderPrizeList();
+  // Logo preview
+  if(logoDataUrl){
+    document.getElementById('logoPreview').src = logoDataUrl;
+    document.getElementById('logoPreview').style.display='block';
+    document.getElementById('logoUploadText').style.display='none';
+    document.getElementById('removeLogoBtn').style.display='';
+  }
+  document.getElementById('settingsOverlay').classList.add('show');
+}
+
+function closeSettings(){
+  document.getElementById('settingsOverlay').classList.remove('show');
+}
+
+function saveSettings(){
+  const company = document.getElementById('s_company').value.trim();
+  const event   = document.getElementById('s_event').value.trim();
+  const tagline = document.getElementById('s_tagline').value.trim();
+  const type    = document.getElementById('s_type').value;
+
+  document.getElementById('hCompany').textContent = company || 'LuckyWheel Pro';
+  document.getElementById('hEvent').textContent   = event || tagline || 'Event Spinner · Ready to Spin';
+  document.getElementById('hType').textContent    = type;
+
+  const initials = company ? company.split(' ').map(w=>w[0]||'').slice(0,2).join('').toUpperCase() : 'LW';
+  document.getElementById('headerLogoText').textContent = initials;
+
+  document.getElementById('q_confetti').checked   = document.getElementById('o_confetti').checked;
+  document.getElementById('q_sound').checked      = document.getElementById('o_sound').checked;
+  document.getElementById('q_autoremove').checked = document.getElementById('o_autoremove').checked;
+
+  saveStorage();
+  closeSettings();
+  showToast('✅ Settings saved');
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const tabs=['branding','prizes','theme','options'];
+    b.classList.toggle('active', tabs[i]===tab);
+  });
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+/* ════════════════════════════════════════
+   LOGO
+════════════════════════════════════════ */
+function handleLogoUpload(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    logoDataUrl = ev.target.result;
+    document.getElementById('logoPreview').src = logoDataUrl;
+    document.getElementById('logoPreview').style.display='block';
+    document.getElementById('logoUploadText').style.display='none';
+    document.getElementById('removeLogoBtn').style.display='';
+    // Update header
+    document.getElementById('headerLogoImg').src = logoDataUrl;
+    document.getElementById('headerLogoImg').style.display='block';
+    document.getElementById('headerLogoText').style.display='none';
+    saveStorage();
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeLogo(){
+  logoDataUrl='';
+  document.getElementById('logoPreview').src='';
+  document.getElementById('logoPreview').style.display='none';
+  document.getElementById('logoUploadText').style.display='block';
+  document.getElementById('removeLogoBtn').style.display='none';
+  document.getElementById('headerLogoImg').style.display='none';
+  document.getElementById('headerLogoText').style.display='block';
+  document.getElementById('logoFileInput').value='';
   saveStorage();
 }
 
-/* ────────────────────────── UPDATE UI ── */
-function updateUI() {
-  const list = document.getElementById('tagList');
-  document.getElementById('countBadge').textContent  = names.length;
-  document.getElementById('statTotal').textContent   = names.length;
-  document.getElementById('statSpins').textContent   = spinCount;
-  document.getElementById('statRemoved').textContent = removedCount;
-  document.getElementById('clearAllBtn').style.display = names.length ? '' : 'none';
+/* ════════════════════════════════════════
+   PRIZES
+════════════════════════════════════════ */
+function renderPrizeList(){
+  const list = document.getElementById('prizeList');
+  list.innerHTML='';
+  prizes.forEach((p,i)=>{
+    const row = document.createElement('div');
+    row.className='prize-row';
+    row.innerHTML=`
+      <div class="prize-dot" style="background:${p.color};"></div>
+      <div style="flex:1;">
+        <div class="prize-row-name">${p.emoji} ${p.name}</div>
+        <div class="prize-row-desc">${p.desc}</div>
+      </div>
+      ${i===activePrizeIdx?'<span class="prize-active-badge">Active</span>':''}
+      <button class="btn btn-sm" onclick="setActivePrize(${i})" title="Set as active">▶</button>
+      <button class="btn btn-sm btn-danger" onclick="deletePrize(${i})" title="Delete">×</button>`;
+    list.appendChild(row);
+  });
+  updatePrizePill();
+}
 
-  // Wheel info label
-  const wi = document.getElementById('wheelInfo');
-  if (names.length > 200) {
-    wi.textContent = 'Segment mode (200+ names)';
-  } else if (names.length > 80) {
-    wi.textContent = 'Number mode (80+ names)';
-  } else if (names.length > 30) {
-    wi.textContent = 'Initials mode (30+ names)';
-  } else {
-    wi.textContent = '';
-  }
+function addPrize(){
+  const name  = document.getElementById('newPrizeName').value.trim();
+  const desc  = document.getElementById('newPrizeDesc').value.trim();
+  const emoji = document.getElementById('newPrizeEmoji').value.trim() || '🎁';
+  if(!name) return;
+  const hues = ['#6366f1','#14b8a6','#f43f5e','#8b5cf6','#06b6d4','#84cc16'];
+  prizes.push({id:Date.now(),emoji,name,desc,color:hues[prizes.length%hues.length]});
+  document.getElementById('newPrizeName').value='';
+  document.getElementById('newPrizeDesc').value='';
+  document.getElementById('newPrizeEmoji').value='';
+  renderPrizeList();
+  saveStorage();
+}
 
-  // Tag list (virtual — show max TAG_LIMIT)
-  list.innerHTML = '';
-  if (!names.length) {
-    list.innerHTML = '<span class="empty">No participants yet — add names above</span>';
-  } else {
-    const visible = showAllTags ? names : names.slice(0, TAG_LIMIT);
-    visible.forEach((n, i) => {
-      const actualIdx = i;
-      const tag = document.createElement('div');
-      tag.className = 'tag';
-      tag.setAttribute('role', 'listitem');
-      tag.innerHTML = `<span>${escHtml(n)}</span><button onclick="removeName(${actualIdx})" title="Remove ${escHtml(n)}" aria-label="Remove ${escHtml(n)}">×</button>`;
+function deletePrize(i){
+  if(prizes.length<=1){showToast('⚠ At least one prize is required');return;}
+  prizes.splice(i,1);
+  if(activePrizeIdx>=prizes.length) activePrizeIdx=prizes.length-1;
+  renderPrizeList();
+  saveStorage();
+}
+
+function setActivePrize(i){
+  activePrizeIdx=i;
+  renderPrizeList();
+  updatePrizePill();
+  saveStorage();
+}
+
+function cyclePrize(){
+  activePrizeIdx=(activePrizeIdx+1)%prizes.length;
+  updatePrizePill();
+  renderPrizeList();
+  saveStorage();
+}
+
+function updatePrizePill(){
+  const p = prizes[activePrizeIdx] || prizes[0];
+  const pill = document.getElementById('activePrizePill');
+  if(!p){pill.textContent='No prizes';return;}
+  pill.textContent = `${p.emoji} ${p.name}${p.desc?' — '+p.desc:''}`;
+  pill.style.background=p.color;
+}
+
+/* ════════════════════════════════════════
+   QUICK OPTIONS SYNC
+════════════════════════════════════════ */
+function syncFromQuick(key){
+  if(key==='confetti') document.getElementById('o_confetti').checked=document.getElementById('q_confetti').checked;
+  if(key==='sound')    document.getElementById('o_sound').checked=document.getElementById('q_sound').checked;
+  if(key==='autoremove') document.getElementById('o_autoremove').checked=document.getElementById('q_autoremove').checked;
+  saveStorage();
+}
+
+/* ════════════════════════════════════════
+   PARTICIPANTS
+════════════════════════════════════════ */
+function addSingle(){
+  const inp=document.getElementById('nameInput');
+  const val=inp.value.trim();
+  if(!val) return;
+  if(!names.includes(val)){names.push(val);updateUI();drawWheel(currentAngle);saveStorage();}
+  inp.value=''; inp.focus();
+}
+
+function addBulk(){
+  const ta=document.getElementById('bulkInput');
+  const lines=ta.value.split('\n').map(l=>l.trim()).filter(Boolean);
+  let added=0;
+  lines.forEach(n=>{if(!names.includes(n)){names.push(n);added++;}});
+  ta.value='';
+  if(added>0){showToast(`✅ Added ${added} participant${added>1?'s':''}`);updateUI();drawWheel(currentAngle);saveStorage();}
+}
+
+function removeName(i){names.splice(i,1);updateUI();drawWheel(currentAngle);saveStorage();}
+
+function clearAll(){
+  if(!confirm(`Remove all ${names.length} participants?`)) return;
+  names=[];showAllTags=false;updateUI();drawWheel(currentAngle);saveStorage();
+}
+
+function updateUI(){
+  const n=names.length;
+  document.getElementById('countBadge').textContent=n;
+  document.getElementById('sTotal').textContent=n;
+  document.getElementById('sSpins').textContent=spinCount;
+  document.getElementById('sRemoved').textContent=removedCount;
+  document.getElementById('clearAllBtn').style.display=n?'':'none';
+  document.getElementById('hBadge').textContent=n>=2?`${n} participants ready`:'';
+
+  // Wheel info
+  const list=document.getElementById('tagList');
+  list.innerHTML='';
+  if(!n){list.innerHTML='<span class="empty-label">No participants yet</span>';} 
+  else {
+    const vis=showAllTags?names:names.slice(0,TAG_LIMIT);
+    vis.forEach((nm,i)=>{
+      const tag=document.createElement('div');tag.className='tag';tag.setAttribute('role','listitem');
+      tag.innerHTML=`<span>${escH(nm)}</span><button onclick="removeName(${i})" aria-label="Remove ${escH(nm)}">×</button>`;
       list.appendChild(tag);
     });
-    if (!showAllTags && names.length > TAG_LIMIT) {
-      const more = document.createElement('div');
-      more.className = 'tag-overflow';
-      more.textContent = `+${names.length - TAG_LIMIT} more — click to show all`;
-      more.onclick = () => { showAllTags = true; updateUI(); };
-      list.appendChild(more);
-    } else if (showAllTags && names.length > TAG_LIMIT) {
-      const less = document.createElement('div');
-      less.className = 'tag-overflow';
-      less.textContent = '▲ Show fewer';
-      less.onclick = () => { showAllTags = false; updateUI(); };
-      list.appendChild(less);
+    if(!showAllTags&&n>TAG_LIMIT){
+      const m=document.createElement('div');m.className='tag-more';
+      m.textContent=`+${n-TAG_LIMIT} more`;m.onclick=()=>{showAllTags=true;updateUI();};list.appendChild(m);
+    } else if(showAllTags&&n>TAG_LIMIT){
+      const m=document.createElement('div');m.className='tag-more';
+      m.textContent='▲ Collapse';m.onclick=()=>{showAllTags=false;updateUI();};list.appendChild(m);
     }
   }
 
-  // Top badge
-  document.getElementById('topBadge').textContent =
-    names.length >= 2 ? `⚡ ${names.length} ready` : '⚡ Ready';
-
-  // Spin button
-  const btn = document.getElementById('spinBtn');
-  btn.disabled = names.length < 2;
-  btn.textContent = names.length < 2
-    ? 'Add at least 2 participants'
-    : '🎡  SPIN THE WHEEL';
+  const btn=document.getElementById('spinBtn');
+  btn.disabled=n<2;
+  btn.textContent=n<2?'Add at least 2 participants':'🎡  SPIN THE WHEEL';
+  updatePrizePill();
 }
 
-function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-/* ────────────────────────── SPIN LOGIC ── */
-let audioCtx = null;
-function getAudioCtx() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  return audioCtx;
-}
-function playTick() {
-  if (!document.getElementById('soundToggle').checked) return;
-  try {
-    const ac  = getAudioCtx();
-    const osc = ac.createOscillator();
-    const g   = ac.createGain();
-    osc.connect(g); g.connect(ac.destination);
-    osc.frequency.value = 800;
-    g.gain.setValueAtTime(.08, ac.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001, ac.currentTime + .04);
-    osc.start(); osc.stop(ac.currentTime + .04);
-  } catch(e) {}
-}
+/* ════════════════════════════════════════
+   SPIN  ←  CORRECT ANGLE MATH
+════════════════════════════════════════ */
+function spin(){
+  if(spinning||names.length<2) return;
+  spinning=true;
+  const btn=document.getElementById('spinBtn');
+  btn.disabled=true; btn.textContent='⏳  Spinning…';
+  document.getElementById('winnerOverlay').classList.remove('show');
 
-function spin() {
-  if (spinning || names.length < 2) return;
-  spinning = true;
-  const btn = document.getElementById('spinBtn');
-  btn.disabled = true;
-  btn.textContent = '⏳  Spinning…';
-  document.getElementById('modalOverlay').classList.remove('show');
+  const n          = names.length;
+  const TWO_PI     = Math.PI*2;
+  const slice      = TWO_PI/n;
+  const winnerIdx  = Math.floor(Math.random()*n);
 
-  const n         = names.length;
-  const winnerIdx = Math.floor(Math.random() * n);
-  const slice     = (Math.PI * 2) / n;
+  // Pointer is at the RIGHT (canvas angle = 0).
+  // Slice i occupies [angle + i*slice, angle + (i+1)*slice].
+  // For winnerIdx to be at angle 0 (pointer):
+  //   angle + winnerIdx*slice + slice/2 ≡ 0  (mod 2π)
+  //   finalAngle ≡ -(winnerIdx*slice + slice/2)  (mod 2π)
+  const targetMod  = ((-(winnerIdx*slice+slice/2))%TWO_PI+TWO_PI)%TWO_PI;
+  const currentMod = ((currentAngle%TWO_PI)+TWO_PI)%TWO_PI;
+  let delta        = targetMod-currentMod;
+  if(delta<=0) delta+=TWO_PI;
+  const totalAngle = TWO_PI*(8+Math.floor(Math.random()*6))+delta;
+  const finalAngle = currentAngle+totalAngle;
+  const duration   = 4500+Math.random()*1500;
+  const t0         = performance.now();
+  const startA     = currentAngle;
+  const tickSlice  = slice;
+  let   lastTickA  = 0;
 
-  /*
-   * FIX: pointer is at the RIGHT side of the wheel (3-o'clock = 0 radians).
-   * After spin, we want: (currentAngle + winnerIdx*slice + slice/2) mod 2π = 0
-   * i.e., currentAngle mod 2π = -(winnerIdx*slice + slice/2) mod 2π
-   */
-  const targetMod    = ((-(winnerIdx * slice + slice / 2)) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-  const currentMod   = ((currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-  const angularDiff  = (targetMod - currentMod + Math.PI * 2) % (Math.PI * 2);
-  const minRotations = Math.PI * 2 * (8 + Math.floor(Math.random() * 6));
-  const totalAngle   = minRotations + angularDiff;
-  const finalAngle   = currentAngle + totalAngle;
+  function easeOut(t){return 1-Math.pow(1-t,4);}
 
-  const duration = 4500 + Math.random() * 1500;
-  const t0       = performance.now();
-  const startA   = currentAngle;
-
-  // Tick sound interval
-  let lastTickAngle = 0;
-  const tickEvery   = slice;
-
-  function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
-
-  function frame(now) {
-    const t  = Math.min((now - t0) / duration, 1);
+  function frame(now){
+    const t  = Math.min((now-t0)/duration,1);
     const ea = easeOut(t);
-    currentAngle = startA + totalAngle * ea;
+    currentAngle = startA+totalAngle*ea;
     drawWheel(currentAngle);
-
-    // Tick sound when crossing a slice boundary
-    const angleMod = currentAngle % (Math.PI * 2);
-    if (Math.floor(angleMod / tickEvery) !== Math.floor(lastTickAngle / tickEvery)) {
-      playTick();
-    }
-    lastTickAngle = angleMod;
-
-    if (t < 1) requestAnimationFrame(frame);
-    else onSpinEnd(winnerIdx);
+    const mod=(currentAngle%TWO_PI+TWO_PI)%TWO_PI;
+    if(Math.floor(mod/tickSlice)!==Math.floor(lastTickA/tickSlice)) playTick();
+    lastTickA=mod;
+    if(t<1) requestAnimationFrame(frame);
+    else { currentAngle=finalAngle; drawWheel(currentAngle); onSpinEnd(winnerIdx); }
   }
   requestAnimationFrame(frame);
 }
 
-function onSpinEnd(idx) {
-  spinning = false;
+function onSpinEnd(idx){
+  spinning=false;
   spinCount++;
-  pendingIdx = idx;
-
+  pendingIdx=idx;
   const name  = names[idx];
-  const prize = document.getElementById('prizeInput').value.trim();
+  const prize = prizes[activePrizeIdx]||prizes[0]||null;
 
-  if (document.getElementById('confettiToggle').checked) launchConfetti();
+  if(document.getElementById('q_confetti').checked) launchConfetti();
 
-  if (document.getElementById('autoRemoveToggle').checked) {
-    addHistory(name, prize, 'removed');
-    names.splice(idx, 1);
-    removedCount++;
-    updateUI();
-    drawWheel(currentAngle);
-    saveStorage();
-    showToast(`🏆 ${name} wins!${prize ? ' · ' + prize : ''}`);
-    document.getElementById('spinBtn').disabled = names.length < 2;
-    if (names.length >= 2) {
-      document.getElementById('spinBtn').textContent = '🎡  SPIN THE WHEEL';
-    }
+  if(document.getElementById('q_autoremove').checked){
+    addWinner(name,prize,'removed');
+    names.splice(idx,1); removedCount++;
+    updateUI(); drawWheel(currentAngle); saveStorage();
+    showToast(`🏆 ${name} wins!${prize?' · '+prize.name:''}`);
+    if(document.getElementById('o_autoprizecycle').checked&&prizes.length>1) cyclePrize();
+    document.getElementById('spinBtn').disabled=names.length<2;
+    if(names.length>=2) document.getElementById('spinBtn').textContent='🎡  SPIN THE WHEEL';
   } else {
-    // Populate and show modal
-    const company = document.getElementById('companyInput').value.trim();
-    const event   = document.getElementById('eventInput').value.trim();
-    document.getElementById('modalName').textContent  = name;
-    document.getElementById('modalPrize').textContent = prize ? '🎁 ' + prize : '';
-    document.getElementById('modalEventLabel').textContent = event ? event : '';
-    document.getElementById('modalEventLabel').style.display = event ? '' : 'none';
+    // Populate winner modal
+    const company = document.getElementById('hCompany').textContent;
+    const event   = document.getElementById('hEvent').textContent;
+    const t       = THEMES[currentTheme];
+    document.getElementById('wName').textContent = name;
+    document.getElementById('wEmoji').textContent = t.winEmoji;
 
-    const compTag = document.getElementById('modalCompanyTag');
-    if (company) {
-      compTag.textContent  = '🏢 ' + company;
-      compTag.style.display = '';
-    } else {
-      compTag.style.display = 'none';
-    }
+    const evtag = document.getElementById('wEventTag');
+    if(event&&event!=='Event Spinner · Ready to Spin'){
+      evtag.textContent=`${company!=='LuckyWheel Pro'?company+' · ':''}${event}`;
+      evtag.style.display='';
+    } else evtag.style.display='none';
 
-    document.getElementById('modalOverlay').classList.add('show');
-    saveStorage();
+    const ptag=document.getElementById('wPrizeTag');
+    if(prize){
+      ptag.textContent=`${prize.emoji} ${prize.name}${prize.desc?' — '+prize.desc:''}`;
+      ptag.style.background=prize.color;
+      ptag.style.borderColor=prize.color;
+      ptag.style.display='';
+    } else ptag.style.display='none';
+
+    const wl=document.getElementById('wModalLogo');
+    if(logoDataUrl){wl.src=logoDataUrl;wl.classList.add('show');}
+    else wl.classList.remove('show');
+
+    document.getElementById('winnerOverlay').classList.add('show');
     updateUI();
+    saveStorage();
   }
 }
 
-function handleWinner(action) {
-  if (pendingIdx === null) return;
+function handleWinner(action){
+  if(pendingIdx===null) return;
   const name  = names[pendingIdx];
-  const prize = document.getElementById('prizeInput').value.trim();
-  addHistory(name, prize, action);
-  if (action === 'remove') {
-    names.splice(pendingIdx, 1);
-    removedCount++;
-  }
-  pendingIdx = null;
-  document.getElementById('modalOverlay').classList.remove('show');
+  const prize = prizes[activePrizeIdx]||prizes[0]||null;
+  addWinner(name,prize,action);
+  if(action==='remove'){names.splice(pendingIdx,1);removedCount++;}
+  pendingIdx=null;
+  document.getElementById('winnerOverlay').classList.remove('show');
+  if(action==='remove'&&document.getElementById('o_autoprizecycle').checked&&prizes.length>1) cyclePrize();
   updateUI();
   drawWheel(currentAngle);
   saveStorage();
-  const btn = document.getElementById('spinBtn');
-  btn.disabled = names.length < 2;
-  if (names.length >= 2) btn.textContent = '🎡  SPIN THE WHEEL';
+  if(names.length>=2) document.getElementById('spinBtn').textContent='🎡  SPIN THE WHEEL';
 }
 
-/* ────────────────────────── HISTORY ── */
-function addHistory(name, prize, status) {
-  winHistory.unshift({ num: spinCount, name, prize, status, ts: Date.now() });
-  document.getElementById('historyBadge').textContent = winHistory.length;
-  renderHistory();
+/* ════════════════════════════════════════
+   WINNER LIST
+════════════════════════════════════════ */
+const RANK_EMOJIS=['🥇','🥈','🥉','🏅','🎖️','⭐','🌟','✨'];
+
+function addWinner(name,prize,action){
+  const num = winners.length+1;
+  winners.unshift({num,name,prize,action,ts:Date.now()});
+  addSpinLog(name,prize,action);
+  document.getElementById('winnerCount').textContent=winners.length;
+  renderWinnerList();
 }
 
-function renderHistory() {
-  const list = document.getElementById('historyList');
-  list.innerHTML = '';
-  if (!winHistory.length) {
-    list.innerHTML = '<span class="no-history">No spins yet</span>';
-    return;
-  }
-  winHistory.forEach(h => {
-    const div = document.createElement('div');
-    div.className = 'history-item';
-    div.setAttribute('role', 'listitem');
-    div.innerHTML =
-      `<div class="hi-num">#${h.num}</div>` +
-      `<div class="hi-name">${escHtml(h.name)}</div>` +
-      (h.prize ? `<div class="hi-prize">🎁 ${escHtml(h.prize)}</div>` : '') +
-      `<div class="hi-status ${h.status}">${h.status === 'removed' ? 'Removed' : 'Kept'}</div>`;
+function renderWinnerList(){
+  const list=document.getElementById('winnerList');
+  list.innerHTML='';
+  if(!winners.length){list.innerHTML='<div class="no-winners">No winners yet.<br>Spin the wheel to begin!</div>';return;}
+  winners.forEach((w,i)=>{
+    const div=document.createElement('div');
+    div.className='winner-entry'+(i===0?' fresh':'');
+    div.setAttribute('role','listitem');
+    const rankE=RANK_EMOJIS[w.num-1]||'🎗️';
+    const pc=w.prize?`<div class="winner-prize">${w.prize.emoji} ${w.prize.name}</div>`:'';
+    div.innerHTML=`
+      <div class="winner-rank" style="background:${w.prize?w.prize.color+'22':'rgba(37,99,235,.1)'};">${rankE}</div>
+      <div class="winner-info">
+        <div class="winner-name">${escH(w.name)}</div>
+        ${pc}
+      </div>
+      <span class="winner-badge ${w.action}">${w.action==='removed'?'Removed':'Kept'}</span>`;
+    list.appendChild(div);
+    // Remove fresh glow after 3s
+    if(i===0) setTimeout(()=>div.classList.remove('fresh'),3000);
+  });
+}
+
+function clearWinners(){
+  if(!confirm('Clear winner list?')) return;
+  winners=[];
+  document.getElementById('winnerCount').textContent=0;
+  renderWinnerList();
+  saveStorage();
+}
+
+/* ════════════════════════════════════════
+   SPIN LOG
+════════════════════════════════════════ */
+function addSpinLog(name,prize,status){
+  spinLog.unshift({num:spinCount,name,prize,status});
+  document.getElementById('histBadge').textContent=spinLog.length;
+  renderSpinLog();
+}
+
+function renderSpinLog(){
+  const list=document.getElementById('historyList');
+  list.innerHTML='';
+  if(!spinLog.length){list.innerHTML='<span style="font-size:11px;color:var(--muted);font-style:italic;">No spins yet</span>';return;}
+  spinLog.forEach(h=>{
+    const div=document.createElement('div');div.className='history-item';
+    div.innerHTML=`<div class="hi-num">#${h.num}</div><div class="hi-name">${escH(h.name)}</div>${h.prize?`<div class="hi-prize">${h.prize.emoji} ${h.prize.name}</div>`:''}<div class="hi-st ${h.status}">${h.status==='removed'?'Out':'Kept'}</div>`;
     list.appendChild(div);
   });
 }
 
-function clearHistory() {
-  if (!confirm('Clear all winner history?')) return;
-  winHistory  = [];
-  spinCount   = 0;
-  removedCount= 0;
-  document.getElementById('historyBadge').textContent = 0;
-  document.getElementById('historyList').innerHTML    = '<span class="no-history">No spins yet</span>';
+function clearHistory(){
+  if(!confirm('Clear spin log?')) return;
+  spinLog=[];spinCount=0;removedCount=0;
+  document.getElementById('histBadge').textContent=0;
+  renderSpinLog();
   updateUI();
   saveStorage();
 }
 
-/* ────────────────────────── TOAST ── */
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent  = msg;
-  t.style.display= 'block';
-  t.style.opacity= '1';
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => {
-    t.style.opacity = '0';
-    setTimeout(() => { t.style.display = 'none'; }, 400);
-  }, 3200);
+/* ════════════════════════════════════════
+   SOUND
+════════════════════════════════════════ */
+function playTick(){
+  if(!document.getElementById('q_sound').checked) return;
+  try{
+    if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+    o.connect(g);g.connect(audioCtx.destination);
+    o.frequency.value=900; g.gain.setValueAtTime(.07,audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.04);
+    o.start();o.stop(audioCtx.currentTime+.04);
+  }catch(e){}
 }
 
-/* ────────────────────────── SETTINGS ── */
-function saveSettings() {
-  saveStorage();
-  updateHeader();
-  const s = document.getElementById('settingsSaved');
-  s.classList.add('show');
-  setTimeout(() => s.classList.remove('show'), 2500);
-}
+/* ════════════════════════════════════════
+   CONFETTI
+════════════════════════════════════════ */
+const cc=document.getElementById('confettiCanvas'),cx2=cc.getContext('2d');
+let cp=[];
 
-/* ────────────────────────── LOCAL STORAGE ── */
-const LS = {
-  NAMES:   'lw_names_v2',
-  SETTINGS:'lw_settings_v2',
-  HISTORY: 'lw_history_v2',
-  STATE:   'lw_state_v2',
-};
-
-function saveStorage() {
-  try {
-    localStorage.setItem(LS.NAMES, JSON.stringify(names));
-    localStorage.setItem(LS.SETTINGS, JSON.stringify({
-      company:    document.getElementById('companyInput').value,
-      event:      document.getElementById('eventInput').value,
-      prize:      document.getElementById('prizeInput').value,
-      autoRemove: document.getElementById('autoRemoveToggle').checked,
-      confetti:   document.getElementById('confettiToggle').checked,
-      sound:      document.getElementById('soundToggle').checked,
-    }));
-    localStorage.setItem(LS.HISTORY, JSON.stringify(winHistory));
-    localStorage.setItem(LS.STATE, JSON.stringify({
-      spinCount, removedCount, currentAngle
-    }));
-  } catch(e) {
-    // Storage full or unavailable
-    console.warn('Storage save failed:', e);
-  }
-}
-
-function loadStorage() {
-  try {
-    const n = localStorage.getItem(LS.NAMES);
-    if (n) names = JSON.parse(n);
-
-    const s = localStorage.getItem(LS.SETTINGS);
-    if (s) {
-      const settings = JSON.parse(s);
-      document.getElementById('companyInput').value    = settings.company    || '';
-      document.getElementById('eventInput').value      = settings.event      || '';
-      document.getElementById('prizeInput').value      = settings.prize      || '';
-      document.getElementById('autoRemoveToggle').checked = !!settings.autoRemove;
-      document.getElementById('confettiToggle').checked   = settings.confetti !== false;
-      document.getElementById('soundToggle').checked      = !!settings.sound;
-    }
-
-    const h = localStorage.getItem(LS.HISTORY);
-    if (h) winHistory = JSON.parse(h);
-
-    const st = localStorage.getItem(LS.STATE);
-    if (st) {
-      const state = JSON.parse(st);
-      spinCount    = state.spinCount    || 0;
-      removedCount = state.removedCount || 0;
-      currentAngle = state.currentAngle || 0;
-    }
-
-    document.getElementById('historyBadge').textContent = winHistory.length;
-    renderHistory();
-  } catch(e) {
-    console.warn('Storage load failed:', e);
-  }
-}
-
-/* ────────────────────────── CONFETTI ── */
-const cc  = document.getElementById('confettiCanvas');
-const cx2 = cc.getContext('2d');
-let cp = [];
-const CONF_COLS = ['#2563eb','#3b82f6','#60a5fa','#93c5fd','#e8a020','#fbbf24','#34d399','#f87171','#a78bfa','#fff'];
-
-function launchConfetti() {
-  cc.width  = window.innerWidth;
-  cc.height = window.innerHeight;
-  cp = [];
-  for (let i = 0; i < 180; i++) {
-    cp.push({
-      x: Math.random() * cc.width,
-      y: -10 - Math.random() * 80,
-      vx: (Math.random() - .5) * 5,
-      vy: 3 + Math.random() * 4,
-      size: 5 + Math.random() * 8,
-      color: CONF_COLS[Math.floor(Math.random() * CONF_COLS.length)],
-      rot: Math.random() * 360,
-      rs: (Math.random() - .5) * 7,
-      shape: Math.random() > .5 ? 'rect' : 'circle',
-      life: 1,
-    });
-  }
+function launchConfetti(){
+  cc.width=window.innerWidth;cc.height=window.innerHeight;
+  const cols=THEMES[currentTheme].confetti;
+  cp=[];
+  for(let i=0;i<200;i++) cp.push({
+    x:Math.random()*cc.width,y:-10-Math.random()*80,
+    vx:(Math.random()-.5)*5,vy:3+Math.random()*4,
+    size:5+Math.random()*8,color:cols[Math.floor(Math.random()*cols.length)],
+    rot:Math.random()*360,rs:(Math.random()-.5)*7,
+    shape:Math.random()>.5?'rect':'circle',life:1
+  });
   requestAnimationFrame(animConf);
 }
 
-function animConf() {
-  cx2.clearRect(0, 0, cc.width, cc.height);
-  cp = cp.filter(p => p.life > .02);
-  cp.forEach(p => {
-    p.x += p.vx; p.y += p.vy; p.rot += p.rs;
-    p.vy += .12; p.life -= .006;
-    cx2.save();
-    cx2.globalAlpha = p.life;
-    cx2.translate(p.x, p.y);
-    cx2.rotate(p.rot * Math.PI / 180);
-    cx2.fillStyle = p.color;
-    if (p.shape === 'rect') {
-      cx2.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
-    } else {
-      cx2.beginPath();
-      cx2.arc(0, 0, p.size / 2, 0, Math.PI * 2);
-      cx2.fill();
-    }
+function animConf(){
+  cx2.clearRect(0,0,cc.width,cc.height);
+  cp=cp.filter(p=>p.life>.02);
+  cp.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.rot+=p.rs;p.vy+=.12;p.life-=.006;
+    cx2.save();cx2.globalAlpha=p.life;cx2.translate(p.x,p.y);cx2.rotate(p.rot*Math.PI/180);
+    cx2.fillStyle=p.color;
+    if(p.shape==='rect') cx2.fillRect(-p.size/2,-p.size/4,p.size,p.size/2);
+    else{cx2.beginPath();cx2.arc(0,0,p.size/2,0,Math.PI*2);cx2.fill();}
     cx2.restore();
   });
-  if (cp.length > 0) requestAnimationFrame(animConf);
-  else cx2.clearRect(0, 0, cc.width, cc.height);
+  if(cp.length>0) requestAnimationFrame(animConf);
+  else cx2.clearRect(0,0,cc.width,cc.height);
 }
 
-/* ────────────────────────── KEYBOARD ── */
-document.getElementById('nameInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') addSingle();
-});
-document.getElementById('bulkInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter' && e.ctrlKey) addBulk();
-});
-// Close modal on overlay click
-document.getElementById('modalOverlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('modalOverlay')) {
-    document.getElementById('modalOverlay').classList.remove('show');
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.style.display='block';t.style.opacity='1';
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.style.display='none',400);},3200);
+}
+
+/* ════════════════════════════════════════
+   LOCAL STORAGE
+════════════════════════════════════════ */
+function saveStorage(){
+  try{
+    localStorage.setItem('lwp_names',JSON.stringify(names));
+    localStorage.setItem('lwp_prizes',JSON.stringify(prizes));
+    localStorage.setItem('lwp_winners',JSON.stringify(winners));
+    localStorage.setItem('lwp_log',JSON.stringify(spinLog));
+    localStorage.setItem('lwp_settings',JSON.stringify({
+      company:document.getElementById('hCompany').textContent,
+      event:document.getElementById('hEvent').textContent,
+      type:document.getElementById('hType').textContent,
+      theme:currentTheme,
+      activePrizeIdx,spinCount,removedCount,currentAngle,
+      confetti:document.getElementById('q_confetti').checked,
+      sound:document.getElementById('q_sound').checked,
+      autoremove:document.getElementById('q_autoremove').checked,
+      autoprizecycle:document.getElementById('o_autoprizecycle').checked,
+    }));
+    if(logoDataUrl) localStorage.setItem('lwp_logo',logoDataUrl);
+    else localStorage.removeItem('lwp_logo');
+  }catch(e){console.warn('Storage error:',e);}
+}
+
+function loadStorage(){
+  try{
+    const n=localStorage.getItem('lwp_names'); if(n) names=JSON.parse(n);
+    const p=localStorage.getItem('lwp_prizes'); if(p) prizes=JSON.parse(p);
+    const w=localStorage.getItem('lwp_winners'); if(w) winners=JSON.parse(w);
+    const l=localStorage.getItem('lwp_log'); if(l) spinLog=JSON.parse(l);
+    const logo=localStorage.getItem('lwp_logo');
+    if(logo){
+      logoDataUrl=logo;
+      document.getElementById('headerLogoImg').src=logo;
+      document.getElementById('headerLogoImg').style.display='block';
+      document.getElementById('headerLogoText').style.display='none';
+    }
+    const s=localStorage.getItem('lwp_settings');
+    if(s){
+      const d=JSON.parse(s);
+      if(d.company) document.getElementById('hCompany').textContent=d.company;
+      if(d.event)   document.getElementById('hEvent').textContent=d.event;
+      if(d.type)    document.getElementById('hType').textContent=d.type;
+      if(d.theme)   currentTheme=d.theme;
+      if(d.activePrizeIdx!=null) activePrizeIdx=d.activePrizeIdx;
+      if(d.spinCount) spinCount=d.spinCount;
+      if(d.removedCount) removedCount=d.removedCount;
+      if(d.currentAngle) currentAngle=d.currentAngle;
+      if(d.confetti!=null) document.getElementById('q_confetti').checked=d.confetti;
+      if(d.sound!=null)    document.getElementById('q_sound').checked=d.sound;
+      if(d.autoremove!=null) document.getElementById('q_autoremove').checked=d.autoremove;
+      if(d.autoprizecycle!=null) document.getElementById('o_autoprizecycle').checked=d.autoprizecycle;
+      const ini=(d.company||'LW').split(' ').map(w=>w[0]||'').slice(0,2).join('').toUpperCase();
+      document.getElementById('headerLogoText').textContent=ini;
+    }
+    // Restore winner list UI
+    document.getElementById('winnerCount').textContent=winners.length;
+    document.getElementById('histBadge').textContent=spinLog.length;
+    renderWinnerList();
+    renderSpinLog();
+  }catch(e){console.warn('Load error:',e);}
+}
+
+/* ════════════════════════════════════════
+   EVENTS
+════════════════════════════════════════ */
+document.getElementById('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter') addSingle();});
+document.getElementById('bulkInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.ctrlKey) addBulk();});
+document.getElementById('settingsOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('settingsOverlay')) closeSettings();});
+document.getElementById('winnerOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('winnerOverlay')) document.getElementById('winnerOverlay').classList.remove('show');});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeSettings();
+    document.getElementById('winnerOverlay').classList.remove('show');
   }
 });
-// Close modal on Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('show');
+let _rt;
+window.addEventListener('resize',()=>{
+  clearTimeout(_rt);
+  _rt=setTimeout(()=>{setupCanvas();drawWheel(currentAngle);},120);
 });
 
-/* ────────────────────────── RESPONSIVE RESIZE ── */
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    setupCanvas();
-    drawWheel(currentAngle);
-  }, 120);
-});
-
-/* ────────────────────────── INIT ── */
-document.getElementById('footerYear').textContent = new Date().getFullYear();
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+document.getElementById('fyear').textContent=new Date().getFullYear();
 setupCanvas();
 loadStorage();
-updateHeader();
+applyTheme(currentTheme);
 updateUI();
 drawWheel(currentAngle);
 </script>
