@@ -23,11 +23,11 @@
 <meta name="content-language" content="en, ms, ta, zh"/>
 
 <!-- hreflang for multilingual SEO -->
-<link rel="alternate" hreflang="en"    href="https://www.spinwheel.msdevbuild.com"/>
-<link rel="alternate" hreflang="ms"    href="https://www.spinwheel.msdevbuild.com/luckywheel?lang=ms"/>
-<link rel="alternate" hreflang="zh"    href="https://www.spinwheel.msdevbuild.com/luckywheel?lang=zh"/>
-<link rel="alternate" hreflang="ta"    href="https://www.spinwheel.msdevbuild.com/luckywheel?lang=ta"/>
-<link rel="alternate" hreflang="x-default" href="https://www.spinwheel.msdevbuild.com/luckywheel"/>
+<link rel="alternate" hreflang="en"    href="https://www.msdevbuild.com/luckywheel"/>
+<link rel="alternate" hreflang="ms"    href="https://www.msdevbuild.com/luckywheel?lang=ms"/>
+<link rel="alternate" hreflang="zh"    href="https://www.msdevbuild.com/luckywheel?lang=zh"/>
+<link rel="alternate" hreflang="ta"    href="https://www.msdevbuild.com/luckywheel?lang=ta"/>
+<link rel="alternate" hreflang="x-default" href="https://www.msdevbuild.com/luckywheel"/>
 
 <!-- ═══════════════════ OPEN GRAPH ═══════════════════ -->
 <meta property="og:type"        content="website"/>
@@ -36,9 +36,9 @@
 <meta property="og:locale:alternate" content="zh_MY"/>
 <meta property="og:title"       content="LuckyWheel Pro – Free Spin The Wheel for Events & Lucky Draws"/>
 <meta property="og:description" content="Spin the wheel to pick a random winner! Perfect for schools, offices, weddings, Diwali, Chinese New Year, Hari Raya & more. Free, supports 1000+ names and multiple prize levels."/>
-<meta property="og:url"         content="https://www.spinwheel.msdevbuild.com"/>
-<meta property="og:site_name"   content="spinwheel.msdevbuild.com"/>
-<meta property="og:image"       content="https://www.spinwheel.msdevbuild.com/og-luckywheel.png"/>
+<meta property="og:url"         content="https://www.msdevbuild.com/luckywheel"/>
+<meta property="og:site_name"   content="msdevbuild.com"/>
+<meta property="og:image"       content="https://www.msdevbuild.com/og-luckywheel.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 
@@ -1056,8 +1056,303 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
 .scan-footer-text{font-size:11px;color:var(--muted);line-height:1.9;}
 .scan-footer-text a{color:var(--primary-h);font-weight:700;text-decoration:none;}
 .scan-powered{margin-top:16px;font-size:10px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:5px;letter-spacing:.06em;opacity:.65;}
+
+/* ══════════════════════════════════════════════
+   FULL-SCREEN BLOCKED PAGE (already scanned)
+══════════════════════════════════════════════ */
+#scanBlockedScreen{
+  display:none;
+  position:fixed;inset:0;z-index:3000;
+  flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+  /* Hard red lock - no escape */
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,rgba(220,38,38,.35) 0%,transparent 65%),
+    linear-gradient(160deg,#1a0000 0%,#0d0000 60%,#1a0000 100%);
+  -webkit-user-select:none;user-select:none;
+  overflow:hidden;
+}
+#scanBlockedScreen.show{display:flex;}
+
+/* Pulsing red bars at top & bottom — full-bleed warning stripes */
+#scanBlockedScreen::before,
+#scanBlockedScreen::after{
+  content:'';position:absolute;left:0;right:0;height:6px;
+  background:repeating-linear-gradient(90deg,
+    #dc2626 0,#dc2626 18px,
+    #7f1d1d 18px,#7f1d1d 36px
+  );
+  animation:stripeScroll 1.5s linear infinite;
+}
+#scanBlockedScreen::before{top:0;}
+#scanBlockedScreen::after {bottom:0;}
+@keyframes stripeScroll{from{background-position:0 0;}to{background-position:36px 0;}}
+
+/* Red scanning pulse overlay */
+.block-scan-line{
+  position:absolute;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,rgba(220,38,38,.8),transparent);
+  animation:scanDown 2.5s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes scanDown{
+  0%  {top:0%;opacity:0;}
+  10% {opacity:1;}
+  90% {opacity:1;}
+  100%{top:100%;opacity:0;}
+}
+
+/* Lock icon circle */
+.block-lock-ring{
+  width:110px;height:110px;border-radius:50%;
+  background:rgba(220,38,38,.15);
+  border:3px solid rgba(220,38,38,.5);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;flex-shrink:0;
+  animation:lockPulse 2s ease-in-out infinite;
+  box-shadow:0 0 40px rgba(220,38,38,.3),inset 0 0 30px rgba(220,38,38,.1);
+}
+@keyframes lockPulse{
+  0%,100%{box-shadow:0 0 30px rgba(220,38,38,.3),inset 0 0 20px rgba(220,38,38,.1);}
+  50%    {box-shadow:0 0 60px rgba(220,38,38,.55),inset 0 0 40px rgba(220,38,38,.2);}
+}
+.block-lock-icon{font-size:52px;line-height:1;}
+
+.block-title{
+  font-family:'Raleway',sans-serif;
+  font-size:clamp(26px,6vw,42px);
+  font-weight:900;
+  color:#fff;
+  letter-spacing:.02em;
+  margin-bottom:10px;
+  text-shadow:0 0 30px rgba(220,38,38,.6);
+}
+.block-subtitle{
+  font-size:clamp(14px,3.5vw,18px);
+  color:rgba(255,200,200,.8);
+  font-weight:600;
+  line-height:1.65;
+  max-width:480px;
+  margin-bottom:28px;
+}
+.block-subtitle strong{color:#fff;}
+
+.block-detail-box{
+  background:rgba(220,38,38,.1);
+  border:1px solid rgba(220,38,38,.3);
+  border-radius:14px;padding:14px 22px;
+  max-width:420px;width:100%;
+  margin-bottom:28px;
+}
+.block-detail-row{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;padding:4px 0;
+  border-bottom:1px solid rgba(220,38,38,.15);
+  gap:12px;
+}
+.block-detail-row:last-child{border-bottom:none;}
+.block-detail-lbl{color:rgba(255,180,180,.7);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:10px;white-space:nowrap;}
+.block-detail-val{color:#fff;font-weight:700;text-align:right;word-break:break-all;}
+
+.block-footer{
+  font-size:11px;
+  color:rgba(255,180,180,.5);
+  line-height:1.8;
+  max-width:400px;
+}
+.block-footer a{color:rgba(255,200,200,.7);text-decoration:none;font-weight:700;}
+
+/* Scan badge on admin QR stage */
+.qr-scan-count{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);
+  color:var(--success);border-radius:100px;padding:4px 14px;
+  font-size:11px;font-weight:800;
+}
+
+/* ── PM QR Panel (inside Presentation Mode) ── */
+.pm-qr-panel{
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:16px;padding:14px;flex-shrink:0;
+  display:none;flex-direction:column;align-items:center;gap:10px;
+}
+.pm-qr-panel.show{display:flex;}
+.pm-qr-panel-title{
+  font-family:'Raleway',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  align-self:flex-start;
+}
+.pm-qr-big-box{
+  width:160px;height:160px;background:#fff;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  padding:8px;box-shadow:0 4px 20px rgba(0,0,0,.5);
+  overflow:hidden;flex-shrink:0;
+}
+.pm-qr-big-box canvas,.pm-qr-big-box img{display:block;width:100%!important;height:100%!important;}
+.pm-qr-round{font-size:11px;font-weight:800;color:var(--primary-h);}
+.pm-qr-timer-row{
+  display:flex;align-items:center;gap:8px;width:100%;
+}
+.pm-qr-timer-bar{
+  flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden;
+}
+.pm-qr-timer-fill{
+  height:100%;background:var(--primary-h);
+  transition:width .25s linear;border-radius:3px;
+}
+.pm-qr-timer-secs{
+  font-family:'Bebas Neue',sans-serif;font-size:20px;
+  color:var(--primary-h);line-height:1;min-width:28px;text-align:right;
+}
+.pm-qr-timer-secs.urgent{color:var(--danger);}
+.pm-qr-hint{font-size:10px;color:var(--muted);font-weight:600;text-align:center;line-height:1.6;}
+
+/* ══════════════════════════════════════════════
+   LUCKY BOX VIEW
+══════════════════════════════════════════════ */
+.lb-view-wrap{
+  max-width:1100px;margin:0 auto;padding:16px 14px 0;
+  display:grid;grid-template-columns:300px 1fr;gap:14px;align-items:start;
+}
+@media(max-width:780px){.lb-view-wrap{grid-template-columns:1fr;}}
+.lb-config-col{display:flex;flex-direction:column;gap:12px;}
+.lb-stage-col{display:flex;flex-direction:column;gap:12px;}
+
+/* Box grid */
+.lb-grid{
+  display:grid;
+  gap:14px;
+  justify-content:center;
+}
+.lb-box{
+  width:120px;height:120px;
+  border-radius:18px;
+  background:linear-gradient(145deg,var(--surface2),var(--surface3));
+  border:2px solid var(--border2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:transform .18s,box-shadow .18s,border-color .18s;
+  user-select:none;
+}
+.lb-box:hover:not(.opened):not(.disabled){
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:0 12px 32px rgba(37,99,235,.35);
+  border-color:var(--primary);
+}
+.lb-box:active:not(.opened):not(.disabled){ transform:scale(.97); }
+.lb-box.opened{
+  cursor:default;
+  animation:lbOpen .5s cubic-bezier(.34,1.56,.64,1);
+}
+.lb-box.disabled{ opacity:.35; cursor:not-allowed; }
+@keyframes lbOpen{
+  0%  {transform:scale(1);}
+  30% {transform:scale(1.18) rotate(-3deg);}
+  60% {transform:scale(1.05) rotate(2deg);}
+  100%{transform:scale(1);}
+}
+.lb-box-lid{
+  position:absolute;top:0;left:0;right:0;height:48%;
+  background:linear-gradient(135deg,var(--primary),var(--primary-h));
+  border-radius:15px 15px 0 0;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .3s;
+  transform-origin:50% 0%;
+  z-index:2;
+}
+.lb-box.opened .lb-box-lid{
+  transform:rotateX(-120deg);
+  opacity:0;
+}
+.lb-box-body{
+  position:absolute;bottom:0;left:0;right:0;height:56%;
+  background:linear-gradient(135deg,#1d4ed8,#1e3a8a);
+  border-radius:0 0 15px 15px;
+  display:flex;align-items:center;justify-content:center;
+}
+.lb-box-ribbon{
+  position:absolute;top:0;bottom:0;left:50%;width:2px;
+  background:rgba(255,255,255,.3);transform:translateX(-50%);z-index:3;
+}
+.lb-box-ribbon-h{
+  position:absolute;top:46%;left:0;right:0;height:2px;
+  background:rgba(255,255,255,.3);z-index:3;
+}
+.lb-box-num{
+  font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;
+  position:absolute;bottom:8px;right:10px;opacity:.6;z-index:4;line-height:1;
+}
+.lb-box-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.15),transparent 70%);
+  opacity:0;transition:opacity .2s;
+}
+.lb-box:hover:not(.opened):not(.disabled) .lb-box-glow{ opacity:1; }
+/* Opened box — prize reveal inside */
+.lb-prize-inside{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;z-index:5;opacity:0;transition:opacity .3s .3s;
+  padding:6px;text-align:center;
+}
+.lb-box.opened .lb-prize-inside{ opacity:1; }
+.lb-prize-emoji{ font-size:28px;line-height:1; }
+.lb-prize-name{ font-size:10px;font-weight:800;color:#fff;line-height:1.2;word-break:break-word; }
+
+/* Box count selector */
+.lb-count-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.lb-count-btn{
+  padding:6px 14px;border-radius:8px;border:2px solid var(--border);
+  background:var(--surface2);color:var(--muted);font-size:12px;font-weight:800;
+  cursor:pointer;transition:all .15s;
+}
+.lb-count-btn:hover{border-color:var(--primary);color:var(--primary-h);}
+.lb-count-btn.active{border-color:var(--primary);background:rgba(37,99,235,.15);color:var(--primary-h);}
+
+/* Big reveal modal */
+.lb-reveal-overlay{
+  display:none;position:fixed;inset:0;z-index:1500;
+  align-items:center;justify-content:center;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(10px);
+  padding:1rem;
+}
+.lb-reveal-overlay.show{display:flex;}
+.lb-reveal-card{
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:24px;padding:2.5rem 2rem;
+  max-width:400px;width:100%;text-align:center;
+  animation:popIn .45s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 40px 100px rgba(0,0,0,.75);
+  position:relative;overflow:hidden;
+}
+.lb-reveal-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--primary-h),var(--gold),transparent);
+}
+.lb-reveal-emoji{font-size:64px;display:block;margin-bottom:10px;animation:bounce .7s .2s both;}
+.lb-reveal-title{font-family:'Raleway',sans-serif;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);margin-bottom:10px;}
+.lb-reveal-prize{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--text);line-height:1.1;margin-bottom:8px;word-break:break-word;}
+.lb-reveal-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 20px;border-radius:100px;font-size:13px;font-weight:800;color:#fff;border:2px solid rgba(255,255,255,.2);margin-bottom:20px;}
+.lb-reveal-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.lb-reveal-actions .btn{min-width:120px;}
+
+/* Session stats */
+.lb-stat-strip{display:flex;gap:8px;margin-bottom:12px;}
+.lb-stat{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 6px;text-align:center;}
+.lb-stat-val{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--primary-h);line-height:1;}
+.lb-stat-lbl{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:2px;}
+
+/* History */
+.lb-hist-list{display:flex;flex-direction:column;gap:6px;max-height:240px;overflow-y:auto;}
+.lb-hist-item{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);font-size:12px;animation:slideIn .3s ease;}
+.lb-hist-rank{width:24px;height:24px;border-radius:50%;background:rgba(37,99,235,.15);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary-h);flex-shrink:0;font-family:'Raleway',sans-serif;}
+.lb-hist-info{flex:1;min-width:0;}
+.lb-hist-name{font-weight:800;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lb-hist-prize{font-size:10px;color:var(--gold-l);font-weight:700;margin-top:1px;}
+.lb-hist-time{font-size:9px;color:var(--muted);flex-shrink:0;}
+.lb-no-hist{font-size:12px;color:var(--muted);font-style:italic;padding:12px 0;text-align:center;}
 </style>
-</head>
 
 <body>
 
@@ -1068,11 +1363,13 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
 <div id="scanPage" role="main" aria-label="Prize Reveal">
   <div class="scan-bg"></div>
   <canvas id="scanConfetti" style="position:fixed;inset:0;pointer-events:none;z-index:2001;"></canvas>
-  <div class="scan-card">
+
+  <!-- ── Prize Reveal card (shown on first scan) ── -->
+  <div class="scan-card" id="scanPrizeCard">
     <img id="scanLogo" class="scan-logo" alt="Company logo"/>
     <div class="scan-company" id="scanCompany"></div>
     <div class="scan-event"   id="scanEvent"></div>
-    <span class="scan-trophy" id="scanTrophy">🏆</span>
+    <span class="scan-trophy" id="scanTrophy">🎉</span>
     <div class="scan-congrats">🎉 Congratulations!</div>
     <div class="scan-name" id="scanName"></div>
     <div class="scan-prize-badge" id="scanPrizeBadge"></div>
@@ -1085,6 +1382,47 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
     <div class="scan-powered">
       ⚡ Powered by <a href="https://www.msdevbuild.com" target="_blank" rel="noopener" style="color:var(--gold-l);text-decoration:none;font-weight:700;">msdevbuild.com</a>
     </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FULL-SCREEN BLOCKED (already scanned) ═══════════════════ -->
+<div id="scanBlockedScreen" role="alert" aria-live="assertive" aria-label="Access blocked">
+  <div class="block-scan-line" aria-hidden="true"></div>
+
+  <div class="block-lock-ring" aria-hidden="true">
+    <div class="block-lock-icon">🔒</div>
+  </div>
+
+  <div class="block-title">Access Denied</div>
+  <div class="block-subtitle">
+    You have already scanned this QR code.<br>
+    <strong>Each QR code can only be scanned once per device.</strong>
+  </div>
+
+  <div class="block-detail-box" id="blockDetailBox">
+    <div class="block-detail-row">
+      <span class="block-detail-lbl">Status</span>
+      <span class="block-detail-val" style="color:#f87171;">🚫 Already Claimed</span>
+    </div>
+    <div class="block-detail-row">
+      <span class="block-detail-lbl">Round</span>
+      <span class="block-detail-val" id="blockRound">—</span>
+    </div>
+    <div class="block-detail-row">
+      <span class="block-detail-lbl">First Scanned</span>
+      <span class="block-detail-val" id="blockScannedAt">—</span>
+    </div>
+    <div class="block-detail-row">
+      <span class="block-detail-lbl">Device ID</span>
+      <span class="block-detail-val" id="blockDeviceId" style="font-size:10px;opacity:.6;">—</span>
+    </div>
+  </div>
+
+  <div class="block-footer">
+    This ensures fair play — each participant can claim a prize only once per round.<br>
+    Wait for the next round's QR code to try again! ⏳<br><br>
+    ⚡ Powered by
+    <a href="https://www.msdevbuild.com" target="_blank" rel="noopener">msdevbuild.com</a>
   </div>
 </div>
 
@@ -1263,7 +1601,7 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
       <div class="pm-winner-list" id="pmWinnerList" role="list">
         <div class="pm-no-winners">No winners yet.<br>Hit SPIN to begin! 🎡</div>
       </div>
-      <!-- PM QR Strip -->
+      <!-- PM QR Strip (old) -->
       <div class="pm-qr-strip" id="pmQrStrip" style="display:none;">
         <div class="pm-qr-box" id="pmQrBox"></div>
         <div class="pm-qr-info">
@@ -1276,11 +1614,38 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
           </div>
         </div>
       </div>
+
+      <!-- PM QR Session Panel (syncs with QR Prize Code view) -->
+      <div class="pm-qr-panel" id="pmQrPanel">
+        <div class="pm-qr-panel-title">📲 QR Prize Session — Live</div>
+        <div class="pm-qr-big-box" id="pmQrBigBox">
+          <div style="color:#9ca3af;font-size:10px;text-align:center;padding:8px;">Waiting for QR session…</div>
+        </div>
+        <div class="pm-qr-round" id="pmQrRound"></div>
+        <div class="pm-qr-timer-row" id="pmQrTimerRow" style="display:none;">
+          <div class="pm-qr-timer-bar"><div class="pm-qr-timer-fill" id="pmQrTimerFill" style="width:100%;"></div></div>
+          <div class="pm-qr-timer-secs" id="pmQrTimerSecs">—</div>
+        </div>
+        <div class="pm-qr-hint">Scan QR to reveal your prize! 🎁<br><span style="font-size:9px;">Each device can scan once per round</span></div>
+      </div>
     </div>
 
   </div>
 </div>
 
+<!-- ═══════════════════ TOP AD ═══════════════════ -->
+<div class="ad-top" aria-label="Advertisement">
+  <div class="ad-slot">
+    <!-- AdSense leaderboard 728×90 / responsive -->
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:90px;"
+         data-ad-client="ca-pub-3425499927549926"
+         data-ad-slot="auto"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+</div>
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
 <header class="app-header" role="banner">
@@ -1317,6 +1682,10 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
   <div class="feature-nav-divider"></div>
   <button class="feature-nav-btn" id="navQr" onclick="switchView('qr')" aria-label="QR Prize Code">
     <span class="nav-icon">📲</span> QR Prize Code
+  </button>
+  <div class="feature-nav-divider"></div>
+  <button class="feature-nav-btn" id="navLb" onclick="switchView('lb')" aria-label="Lucky Box">
+    <span class="nav-icon">🎁</span> Lucky Box
   </button>
 </nav>
 
@@ -1482,6 +1851,38 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
       <button class="btn btn-sm" style="margin-top:9px;width:100%;" onclick="openSettings();switchTab('branding')">✏️ Edit in Settings</button>
     </div>
 
+    <!-- Scan Policy -->
+    <div class="card">
+      <div class="card-title"><i>🔒</i> Scan Policy</div>
+      <p style="font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:12px;">
+        How many times can one device scan each QR code per session?
+      </p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:10px 12px;border-radius:10px;border:2px solid var(--border);background:var(--surface2);transition:all .15s;" id="policyLabelOne">
+          <input type="radio" name="qrScanPolicy" id="policyOne" value="one_per_session" checked
+            style="accent-color:var(--primary);margin-top:2px;flex-shrink:0;" onchange="onPolicyChange()"/>
+          <div>
+            <div style="font-size:12px;font-weight:800;color:var(--text);">🔒 One scan per device per session</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.6;">
+              Each device can scan <strong>once</strong> per QR round. Duplicate scans show the full-screen blocked page.<br>
+              <span style="color:var(--primary-h);">⚠ Works on same browser only (no server needed).</span>
+            </div>
+          </div>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:10px 12px;border-radius:10px;border:2px solid var(--border);background:var(--surface2);transition:all .15s;" id="policyLabelMulti">
+          <input type="radio" name="qrScanPolicy" id="policyMulti" value="multiple"
+            style="accent-color:var(--primary);margin-top:2px;flex-shrink:0;" onchange="onPolicyChange()"/>
+          <div>
+            <div style="font-size:12px;font-weight:800;color:var(--text);">✅ Allow multiple scans</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.6;">
+              Anyone who scans the QR can see the prize. No duplicate check.<br>
+              <span style="color:var(--gold-l);">Good for public display / announcement boards.</span>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+
   </div><!-- /.qr-config-col -->
 
   <!-- ══ RIGHT: QR Stage ══ -->
@@ -1531,6 +1932,11 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
         <!-- Status message -->
         <div class="qr-scan-msg" id="qrScanMsg">📱 Scan now to reveal your prize!</div>
 
+        <!-- Scan count badge -->
+        <div class="qr-scan-count" id="qrScanCountBadge" style="display:none;">
+          ✅ <span id="qrScanCountNum">0</span> scan(s) recorded this round
+        </div>
+
         <!-- Controls (Manual) / (Auto shows only Stop) -->
         <div class="qr-stage-controls" id="qrStageControls"></div>
 
@@ -1564,7 +1970,113 @@ canvas#wheelCanvas{display:block;border-radius:50%;}
 </div><!-- /.qr-view-wrap -->
 </div><!-- /#viewQr -->
 
-<!-- ═══════════════════ BOTTOM AD ═══════════════════ -->
+<!-- ═══════════════════ LUCKY BOX REVEAL MODAL ═══════════════════ -->
+<div class="lb-reveal-overlay" id="lbRevealOverlay" role="dialog" aria-modal="true">
+  <canvas id="lbConfetti" style="position:fixed;inset:0;pointer-events:none;z-index:1501;"></canvas>
+  <div class="lb-reveal-card">
+    <span class="lb-reveal-emoji" id="lbRevealEmoji">🎁</span>
+    <div class="lb-reveal-title">🎉 You Won!</div>
+    <div class="lb-reveal-prize" id="lbRevealPrize">—</div>
+    <div class="lb-reveal-badge" id="lbRevealBadge"></div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:18px;line-height:1.7;" id="lbRevealDesc"></div>
+    <div class="lb-reveal-actions">
+      <button class="btn btn-primary" onclick="closeLbReveal()">🎊 Claim Prize</button>
+      <button class="btn" onclick="closeLbReveal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ VIEW: LUCKY BOX ═══════════════════ -->
+<div id="viewLb" class="view" role="main">
+<div class="lb-view-wrap">
+
+  <!-- LEFT: Config -->
+  <div class="lb-config-col">
+
+    <!-- Prize Pool -->
+    <div class="card">
+      <div class="card-title"><i>🏆</i> Prize Pool <span class="count-badge" id="lbPrizeCount">0</span></div>
+      <div id="lbPrizePoolList" style="display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto;margin-bottom:10px;"></div>
+      <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Add Prize</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="input-row">
+          <input id="lbPrizeName" placeholder="Prize name…" maxlength="50"/>
+          <input id="lbPrizeEmoji" placeholder="🎁" maxlength="4" style="width:50px;text-align:center;font-size:18px;"/>
+        </div>
+        <input id="lbPrizeDesc" class="inp" placeholder="Description (e.g. RM 500 Cash, Free Ticket…)" maxlength="80"/>
+        <button class="btn btn-primary" onclick="addLbPrize()">+ Add Prize</button>
+      </div>
+    </div>
+
+    <!-- Box Count -->
+    <div class="card">
+      <div class="card-title"><i>📦</i> Number of Boxes</div>
+      <div class="lb-count-btns" id="lbCountBtns">
+        <div class="lb-count-btn active" onclick="setLbCount(6)"  data-n="6">6</div>
+        <div class="lb-count-btn"        onclick="setLbCount(9)"  data-n="9">9</div>
+        <div class="lb-count-btn"        onclick="setLbCount(12)" data-n="12">12</div>
+        <div class="lb-count-btn"        onclick="setLbCount(16)" data-n="16">16</div>
+        <div class="lb-count-btn"        onclick="setLbCount(20)" data-n="20">20</div>
+        <div class="lb-count-btn"        onclick="setLbCount(25)" data-n="25">25</div>
+      </div>
+    </div>
+
+    <!-- Session Stats -->
+    <div class="card">
+      <div class="card-title"><i>📊</i> Session Stats</div>
+      <div class="lb-stat-strip">
+        <div class="lb-stat"><div class="lb-stat-val" id="lbStatTotal">0</div><div class="lb-stat-lbl">Boxes</div></div>
+        <div class="lb-stat"><div class="lb-stat-val" id="lbStatOpened">0</div><div class="lb-stat-lbl">Opened</div></div>
+        <div class="lb-stat"><div class="lb-stat-val" id="lbStatLeft">0</div><div class="lb-stat-lbl">Left</div></div>
+      </div>
+      <div style="display:flex;gap:7px;">
+        <button class="btn btn-primary" style="flex:1;" onclick="resetLbGrid()">🔄 New Round</button>
+        <button class="btn btn-sm btn-danger" onclick="clearLbHistory()">Clear Log</button>
+      </div>
+    </div>
+
+    <!-- Event Info -->
+    <div class="card">
+      <div class="card-title"><i>🏢</i> Event Info</div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+        <span style="font-size:11px;color:var(--muted);font-weight:700;">Company</span>
+        <span style="font-size:12px;font-weight:800;" id="lbInfoCompany">—</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span style="font-size:11px;color:var(--muted);font-weight:700;">Event</span>
+        <span style="font-size:12px;font-weight:800;color:var(--gold-l);" id="lbInfoEvent">—</span>
+      </div>
+      <button class="btn btn-sm" style="margin-top:9px;width:100%;" onclick="openSettings();switchTab('branding')">✏️ Edit in Settings</button>
+    </div>
+
+  </div><!-- /.lb-config-col -->
+
+  <!-- RIGHT: Stage -->
+  <div class="lb-stage-col">
+
+    <!-- Box Grid -->
+    <div class="card">
+      <div class="row-flex" style="margin-bottom:14px;">
+        <div class="card-title" style="margin-bottom:0;"><i>🎁</i> Lucky Boxes — <span id="lbGridSubtitle" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:'Nunito',sans-serif;">Click a box to reveal your prize!</span></div>
+        <span class="wheel-mode-badge" id="lbModeBadge"></span>
+      </div>
+      <div id="lbGrid" class="lb-grid" style="padding:8px 0;"></div>
+    </div>
+
+    <!-- Prize Log -->
+    <div class="card">
+      <div class="row-flex" style="margin-bottom:10px;">
+        <div class="card-title" style="margin-bottom:0;"><i>🕓</i> Prize Log <span class="count-badge" id="lbHistCount">0</span></div>
+      </div>
+      <div class="lb-hist-list" id="lbHistList" role="list">
+        <div class="lb-no-hist">No boxes opened yet</div>
+      </div>
+    </div>
+
+  </div><!-- /.lb-stage-col -->
+
+</div><!-- /.lb-view-wrap -->
+</div><!-- /#viewLb -->
 <div class="ad-bottom" aria-label="Advertisement">
   <div class="ad-slot">
     <ins class="adsbygoogle"
@@ -2664,16 +3176,293 @@ window.addEventListener('resize',()=>{
 });
 
 
-/* ════════════ VIEW SWITCHER ════════════ */
+/* ════════════ VIEW SWITCHER (updated for Lucky Box) ════════════ */
 let currentView = 'wheel';
 function switchView(v){
   currentView=v;
-  document.getElementById('viewWheel').classList.toggle('active',v==='wheel');
-  document.getElementById('viewQr').classList.toggle('active',v==='qr');
-  document.getElementById('navWheel').classList.toggle('active',v==='wheel');
-  document.getElementById('navQr').classList.toggle('active',v==='qr');
+  ['wheel','qr','lb'].forEach(id=>{
+    const view=document.getElementById('view'+id.charAt(0).toUpperCase()+id.slice(1));
+    const nav =document.getElementById('nav'+id.charAt(0).toUpperCase()+id.slice(1));
+    if(view) view.classList.toggle('active',v===id);
+    if(nav)  nav.classList.toggle('active',v===id);
+  });
   if(v==='qr') refreshQrView();
+  if(v==='lb') refreshLbView();
 }
+
+/* ════════════════════════════════════════
+   LUCKY BOX
+════════════════════════════════════════ */
+let lbPrizes     = [];           // prize pool
+let lbBoxCount   = 6;            // number of boxes
+let lbBoxPrizes  = [];           // prizes assigned to boxes (index → prize)
+let lbOpenedSet  = new Set();    // indices of opened boxes
+let lbHistory    = [];           // log of opened prizes
+let lbOpenCount  = 0;            // total opened this session
+const LB_COLORS  = ['#d4af37','#9ca3af','#cd7f32','#6366f1','#14b8a6','#f43f5e','#8b5cf6','#06b6d4','#84cc16','#ec4899','#f97316','#10b981'];
+
+/* ── Refresh view on tab switch ── */
+function refreshLbView(){
+  document.getElementById('lbInfoCompany').textContent = document.getElementById('hCompany').textContent||'—';
+  document.getElementById('lbInfoEvent').textContent   = document.getElementById('hEvent').textContent||'—';
+  renderLbPrizePool();
+  if(!lbBoxPrizes.length) renderLbGrid();
+}
+
+/* ── Prize pool ── */
+function addLbPrize(){
+  const name  = document.getElementById('lbPrizeName').value.trim();
+  const emoji = document.getElementById('lbPrizeEmoji').value.trim() || '🎁';
+  const desc  = document.getElementById('lbPrizeDesc').value.trim();
+  if(!name){ showToast('⚠ Prize name required'); return; }
+  lbPrizes.push({id:Date.now(), name, emoji, desc, color:LB_COLORS[lbPrizes.length % LB_COLORS.length]});
+  document.getElementById('lbPrizeName').value = '';
+  document.getElementById('lbPrizeEmoji').value = '';
+  document.getElementById('lbPrizeDesc').value = '';
+  renderLbPrizePool();
+  // Rebuild grid to include new prize
+  renderLbGrid();
+}
+
+function renderLbPrizePool(){
+  const el = document.getElementById('lbPrizePoolList');
+  document.getElementById('lbPrizeCount').textContent = lbPrizes.length;
+  el.innerHTML = '';
+  if(!lbPrizes.length){
+    el.innerHTML = '<div style="font-size:11px;color:var(--muted);font-style:italic;padding:4px 0;">No prizes yet — add prizes to enable boxes</div>';
+    return;
+  }
+  lbPrizes.forEach((p,i)=>{
+    const d = document.createElement('div');
+    d.className = 'qr-pool-item';
+    d.innerHTML = `
+      <div class="qr-pool-dot" style="background:${p.color}"></div>
+      <div style="flex:1;"><div class="qr-pool-name">${p.emoji} ${escH(p.name)}</div><div class="qr-pool-desc">${escH(p.desc)}</div></div>
+      <button class="btn btn-xs btn-danger" onclick="removeLbPrize(${i})" title="Remove">×</button>`;
+    el.appendChild(d);
+  });
+}
+
+function removeLbPrize(i){
+  lbPrizes.splice(i,1);
+  renderLbPrizePool();
+  resetLbGrid();
+}
+
+/* ── Box count ── */
+function setLbCount(n){
+  lbBoxCount = n;
+  document.querySelectorAll('.lb-count-btn').forEach(b=>{
+    b.classList.toggle('active', parseInt(b.dataset.n)===n);
+  });
+  resetLbGrid();
+}
+
+/* ── Grid build ── */
+function renderLbGrid(){
+  const grid = document.getElementById('lbGrid');
+  grid.innerHTML = '';
+
+  if(!lbPrizes.length){
+    grid.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted);font-size:13px;font-weight:700;grid-column:1/-1;">Add prizes to the pool first 👆</div>';
+    updateLbStats();
+    return;
+  }
+
+  // Assign random prizes to boxes
+  lbBoxPrizes = [];
+  for(let i = 0; i < lbBoxCount; i++){
+    lbBoxPrizes.push(lbPrizes[Math.floor(Math.random() * lbPrizes.length)]);
+  }
+
+  // Compute grid columns
+  const cols = lbBoxCount <= 6 ? 3 : lbBoxCount <= 9 ? 3 : lbBoxCount <= 12 ? 4 : lbBoxCount <= 16 ? 4 : 5;
+  grid.style.gridTemplateColumns = `repeat(${cols}, 120px)`;
+
+  lbBoxPrizes.forEach((_,i)=>{
+    const box = document.createElement('div');
+    box.className = 'lb-box';
+    box.dataset.idx = i;
+    box.innerHTML = `
+      <div class="lb-box-lid">
+        <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
+          <path d="M2 8h20v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8z" fill="rgba(255,255,255,.25)"/>
+          <path d="M1 4h22v4H1z" fill="rgba(255,255,255,.35)" rx="1"/>
+          <path d="M9 4c0-2 2-4 3-4s3 2 3 4" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="lb-box-body"></div>
+      <div class="lb-box-ribbon"></div>
+      <div class="lb-box-ribbon-h"></div>
+      <div class="lb-box-num">${i+1}</div>
+      <div class="lb-box-glow"></div>
+      <div class="lb-prize-inside">
+        <div class="lb-prize-emoji"></div>
+        <div class="lb-prize-name"></div>
+      </div>`;
+    box.addEventListener('click', ()=> openLbBox(i, box));
+    grid.appendChild(box);
+  });
+
+  lbOpenedSet.clear();
+  updateLbStats();
+  document.getElementById('lbGridSubtitle').textContent = 'Click a box to reveal your prize!';
+  document.getElementById('lbModeBadge').textContent = `${lbBoxCount} boxes · ${lbPrizes.length} prize${lbPrizes.length>1?'s':''}`;
+}
+
+/* ── Open a box ── */
+function openLbBox(idx, boxEl){
+  if(lbOpenedSet.has(idx)) return;
+  if(boxEl.classList.contains('disabled')) return;
+  if(!lbBoxPrizes.length) return;
+
+  const prize = lbBoxPrizes[idx];
+  lbOpenedSet.add(idx);
+  lbOpenCount++;
+
+  // Animate box open
+  boxEl.classList.add('opened');
+  // Fill prize inside the box
+  boxEl.querySelector('.lb-prize-emoji').textContent = prize.emoji;
+  boxEl.querySelector('.lb-prize-name').textContent  = prize.name;
+  // Colour the box
+  boxEl.querySelector('.lb-box-lid').style.background  = prize.color;
+  boxEl.querySelector('.lb-box-body').style.background = prize.color+'cc';
+
+  // Add to history
+  lbHistory.unshift({num: lbOpenCount, prize, ts: Date.now(), box: idx+1});
+  renderLbHistory();
+  updateLbStats();
+
+  // Sound
+  playLbOpenSound();
+
+  // Show reveal modal after short delay
+  setTimeout(()=> showLbReveal(prize), 380);
+}
+
+/* ── Reveal modal ── */
+function showLbReveal(prize){
+  document.getElementById('lbRevealEmoji').textContent = prize.emoji;
+  document.getElementById('lbRevealPrize').textContent = prize.name;
+  const badge = document.getElementById('lbRevealBadge');
+  badge.textContent       = `${prize.emoji} ${prize.name}`;
+  badge.style.background  = prize.color;
+  badge.style.borderColor = prize.color;
+  const desc = document.getElementById('lbRevealDesc');
+  desc.textContent = prize.desc || '';
+  desc.style.display = prize.desc ? '' : 'none';
+  document.getElementById('lbRevealOverlay').classList.add('show');
+  launchLbConfetti(prize.color);
+}
+
+function closeLbReveal(){
+  document.getElementById('lbRevealOverlay').classList.remove('show');
+  // Check if all boxes are opened
+  if(lbOpenedSet.size >= lbBoxCount){
+    document.getElementById('lbGridSubtitle').textContent = '🎉 All boxes opened! Start a new round.';
+  }
+}
+
+/* ── Confetti for box reveal ── */
+function launchLbConfetti(accentColor){
+  const cc = document.getElementById('lbConfetti');
+  if(!cc) return;
+  const cx = cc.getContext('2d');
+  cc.width = window.innerWidth; cc.height = window.innerHeight;
+  const cols = [accentColor,'#fbbf24','#34d399','#60a5fa','#f472b6','#fff'];
+  let parts = [];
+  for(let i=0;i<160;i++) parts.push({
+    x:Math.random()*cc.width, y:-10-Math.random()*60,
+    vx:(Math.random()-.5)*5, vy:3+Math.random()*4,
+    size:5+Math.random()*8, color:cols[Math.floor(Math.random()*cols.length)],
+    rot:Math.random()*360, rs:(Math.random()-.5)*7,
+    shape:Math.random()>.5?'rect':'circle', life:1
+  });
+  function anim(){
+    cx.clearRect(0,0,cc.width,cc.height);
+    parts = parts.filter(p=>p.life>.02);
+    parts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.rs; p.vy+=.12; p.life-=.007;
+      cx.save(); cx.globalAlpha=p.life; cx.translate(p.x,p.y); cx.rotate(p.rot*Math.PI/180);
+      cx.fillStyle=p.color;
+      if(p.shape==='rect') cx.fillRect(-p.size/2,-p.size/4,p.size,p.size/2);
+      else{ cx.beginPath(); cx.arc(0,0,p.size/2,0,Math.PI*2); cx.fill(); }
+      cx.restore();
+    });
+    if(parts.length>0) requestAnimationFrame(anim);
+    else cx.clearRect(0,0,cc.width,cc.height);
+  }
+  requestAnimationFrame(anim);
+}
+
+/* ── Sound for box open ── */
+function playLbOpenSound(){
+  try{
+    const ac = getAC();
+    // Sparkle sound: quick rising arp
+    [[523,.0],[659,.08],[784,.16],[1047,.26]].forEach(([freq,delay])=>{
+      const o=ac.createOscillator(), g=ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      o.type='sine'; o.frequency.value=freq;
+      g.gain.setValueAtTime(0, ac.currentTime+delay);
+      g.gain.linearRampToValueAtTime(.18, ac.currentTime+delay+.04);
+      g.gain.exponentialRampToValueAtTime(.001, ac.currentTime+delay+.35);
+      o.start(ac.currentTime+delay); o.stop(ac.currentTime+delay+.35);
+    });
+  }catch(e){}
+}
+
+/* ── History ── */
+function renderLbHistory(){
+  const list = document.getElementById('lbHistList');
+  document.getElementById('lbHistCount').textContent = lbHistory.length;
+  list.innerHTML = '';
+  if(!lbHistory.length){
+    list.innerHTML = '<div class="lb-no-hist">No boxes opened yet</div>';
+    return;
+  }
+  lbHistory.forEach(h=>{
+    const div = document.createElement('div');
+    div.className = 'lb-hist-item';
+    const time = new Date(h.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    div.innerHTML = `
+      <div class="lb-hist-rank">#${h.num}</div>
+      <div class="lb-hist-info">
+        <div class="lb-hist-name">Box ${h.box} — ${h.prize.emoji} ${escH(h.prize.name)}</div>
+        ${h.prize.desc?`<div class="lb-hist-prize">${escH(h.prize.desc)}</div>`:''}
+      </div>
+      <div class="lb-hist-time">${time}</div>`;
+    list.appendChild(div);
+  });
+}
+
+function clearLbHistory(){
+  lbHistory = []; lbOpenCount = 0;
+  document.getElementById('lbHistCount').textContent = 0;
+  renderLbHistory();
+  updateLbStats();
+}
+
+/* ── Stats ── */
+function updateLbStats(){
+  const total   = lbBoxCount;
+  const opened  = lbOpenedSet.size;
+  const left    = Math.max(0, total - opened);
+  document.getElementById('lbStatTotal').textContent  = total;
+  document.getElementById('lbStatOpened').textContent = opened;
+  document.getElementById('lbStatLeft').textContent   = left;
+}
+
+/* ── New round ── */
+function resetLbGrid(){
+  if(lbOpenedSet.size > 0 && !confirm('Start a new round? All opened boxes will be reset.')) return;
+  lbOpenedSet.clear();
+  lbBoxPrizes = [];
+  renderLbGrid();
+}
+
+
 
 /* ════════════════════════════════════════
    QR PRIZE ENGINE — AUTO / MANUAL
@@ -2689,7 +3478,64 @@ let qrCurrentPrize  = null;     // selected prize (hidden from display)
 let qrCurrentUrl    = '';
 let qrHistory       = [];
 let qrExpiredTimer  = null;
+let qrRoundScanCount= 0;        // scans recorded for current round
 const QR_STAGE_CIRC = 326.7;    // 2π × 52 (stage ring r=52)
+
+/* ── PM QR panel sync ── */
+function updatePmQrPanel(){
+  const panel = document.getElementById('pmQrPanel');
+  if(!panel) return;
+  if(!qrSessionActive || !qrCurrentUrl){
+    panel.classList.remove('show');
+    return;
+  }
+  panel.classList.add('show');
+  // Render QR
+  renderQR(document.getElementById('pmQrBigBox'), qrCurrentUrl, 144);
+  document.getElementById('pmQrRound').textContent = `Round ${qrRound}`;
+  // Timer bar
+  const timerRow = document.getElementById('pmQrTimerRow');
+  timerRow.style.display = qrMode==='auto' ? '' : 'none';
+  if(qrMode==='auto') updatePmQrTimerBar(1);
+}
+
+function updatePmQrTimerBar(frac){
+  const fill = document.getElementById('pmQrTimerFill');
+  const secs = document.getElementById('pmQrTimerSecs');
+  if(fill) fill.style.width = Math.max(0,frac*100)+'%';
+  if(secs){
+    const s = Math.ceil(qrSecondsLeft);
+    secs.textContent = qrTotalSecs>=999999 ? '∞' : String(Math.max(0,s));
+    secs.classList.toggle('urgent', s<=5);
+  }
+}
+
+/* ── Scan count badge ── */
+function updateScanCountBadge(){
+  const badge = document.getElementById('qrScanCountBadge');
+  const num   = document.getElementById('qrScanCountNum');
+  if(!badge) return;
+  if(qrRoundScanCount > 0){
+    badge.style.display = '';
+    if(num) num.textContent = String(qrRoundScanCount);
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+/* ── Listen for scan events broadcast by scanner's device ── */
+window.addEventListener('storage', e => {
+  if(e.key !== 'lwp_scan_event' || !e.newValue) return;
+  try{
+    const ev = JSON.parse(e.newValue);
+    // Only count if matches current round
+    if(ev.rd === String(qrRound)){
+      qrRoundScanCount++;
+      updateScanCountBadge();
+      showToast(`📲 Scan recorded! Total this round: ${qrRoundScanCount}`);
+    }
+  }catch(ex){}
+});
 
 /* ── Refresh info when switching to QR tab ── */
 function refreshQrView(){
@@ -2702,6 +3548,13 @@ function refreshQrView(){
   const dur=parseInt(document.getElementById('qrDurationSlider').value)||30;
   document.getElementById('qrDurationVal').textContent=dur;
   updateStartBtn();
+  // Restore scan policy from storage
+  try{
+    const p = localStorage.getItem('lwp_scan_policy')||'one_per_session';
+    const r = document.querySelector(`input[name="qrScanPolicy"][value="${p}"]`);
+    if(r) r.checked=true;
+    onPolicyChange();
+  }catch(e){}
 }
 
 /* ── Mode selector ── */
@@ -2810,10 +3663,17 @@ function nextQrRound(){
   // Build URL (prize in URL params — hidden from admin display)
   qrCurrentUrl=buildQrUrl(qrCurrentPrize,qrRound);
 
-  // Render QR
+  // Render QR in stage
   const box=document.getElementById('qrBigBox');
   box.style.width='240px'; box.style.height='240px';
   renderQR(box,qrCurrentUrl,216);
+
+  // Render QR in Presentation Mode panel
+  updatePmQrPanel();
+
+  // Reset scan count for this round
+  qrRoundScanCount = 0;
+  updateScanCountBadge();
 
   // Update UI
   document.getElementById('qrRoundBadge').textContent=`Round ${qrRound}`;
@@ -2822,7 +3682,7 @@ function nextQrRound(){
   document.getElementById('qrScanMsg').textContent='📱 Scan now to reveal your prize!';
   setStageRing(1);
 
-  // Add to log (prize name hidden in admin log too)
+  // Add to log
   addQrLog('🔒 Hidden Prize', qrRound, qrCurrentUrl, qrCurrentPrize);
 
   // Controls
@@ -2844,6 +3704,7 @@ function startQrCountdown(){
     document.getElementById('qrTimerDisplay').textContent=String(Math.max(0,qrSecondsLeft));
     document.getElementById('qrTimerDisplay').classList.toggle('urgent',qrSecondsLeft<=5);
     setStageRing(frac);
+    updatePmQrTimerBar(frac);   // sync PM bar
     // Tick sounds in last 5s
     if(qrSecondsLeft<=5&&qrSecondsLeft>0) playQrTickSound(qrSecondsLeft);
     if(qrSecondsLeft<=0){
@@ -2881,6 +3742,9 @@ function qrStop(){
   qrSessionActive=false;
   showQrState('idle');
   updateStartBtn();
+  // Hide PM QR panel
+  const panel=document.getElementById('pmQrPanel');
+  if(panel) panel.classList.remove('show');
   showToast('⏹ QR session stopped');
 }
 
@@ -3041,21 +3905,82 @@ function pushQR(name,prize){}
 
 
 
+/* ════════════ DEVICE FINGERPRINT & SCAN DEDUPLICATION ════════════ */
+
+/* Scan policy: 'one_per_session' (default) | 'multiple' */
+function getScanPolicy(){
+  // Read from the radio in QR view (may not exist on scan page — default to stored)
+  const r = document.querySelector('input[name="qrScanPolicy"]:checked');
+  if(r) return r.value;
+  try{ return localStorage.getItem('lwp_scan_policy')||'one_per_session'; }catch(e){ return 'one_per_session'; }
+}
+
+function onPolicyChange(){
+  const v = getScanPolicy();
+  try{ localStorage.setItem('lwp_scan_policy', v); }catch(e){}
+  // Highlight active label
+  const lOne  = document.getElementById('policyLabelOne');
+  const lMult = document.getElementById('policyLabelMulti');
+  if(lOne)  lOne.style.borderColor  = v==='one_per_session' ? 'var(--primary)' : 'var(--border)';
+  if(lMult) lMult.style.borderColor = v==='multiple'        ? 'var(--primary)' : 'var(--border)';
+}
+
+/* Generate/retrieve a persistent device ID for this browser */
+function getDeviceId(){
+  let id = null;
+  try{ id = localStorage.getItem('lwp_device_id'); }catch(e){}
+  if(!id){
+    id = 'dev_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,10);
+    try{ localStorage.setItem('lwp_device_id', id); }catch(e){}
+  }
+  return id;
+}
+
+/* Build a unique scan-session key from URL params (round + timestamp) */
+function buildScanKey(rd, ts){
+  // Key = "lwp_scanned_rd<round>_ts<timestamp>" — unique per QR generation
+  return `lwp_scanned_rd${rd}_ts${ts}`;
+}
+
+/* Record that this device has scanned a specific QR */
+function recordScan(scanKey, prizeInfo){
+  try{
+    localStorage.setItem(scanKey, JSON.stringify({
+      deviceId: getDeviceId(),
+      scannedAt: new Date().toISOString(),
+      prize: prizeInfo,
+    }));
+  }catch(e){}
+}
+
+/* Check if this device already scanned this QR — respects policy */
+function hasAlreadyScanned(scanKey){
+  // Read policy from storage (scan page can't access the radio element)
+  let policy = 'one_per_session';
+  try{ policy = localStorage.getItem('lwp_scan_policy') || 'one_per_session'; }catch(e){}
+  if(policy === 'multiple') return false;   // always allow
+  try{ return !!localStorage.getItem(scanKey); }catch(e){ return false; }
+}
+
 /* ════════════ SCAN PAGE (prize reveal when QR is scanned) ════════════ */
 function checkScanPage(){
   const p = new URLSearchParams(window.location.search);
   if(p.get('scan') !== '1') return;
 
-  // Hide main app, show scan page
+  // Show scan page layer
   document.getElementById('scanPage').classList.add('show');
   document.getElementById('scanPage').style.display = 'flex';
-  // Hide everything else
-  document.querySelector('.app-header')   && (document.querySelector('.app-header').style.display='none');
-  document.querySelector('.app-body')     && (document.querySelector('.app-body').style.display='none');
-  document.querySelector('.app-footer')   && (document.querySelector('.app-footer').style.display='none');
-  document.querySelector('.ad-top')       && (document.querySelector('.ad-top').style.display='none');
-  document.querySelector('.ad-bottom')    && (document.querySelector('.ad-bottom').style.display='none');
-  document.querySelector('.seo-content')  && (document.querySelector('.seo-content').style.display='none');
+
+  // Hide every app element with one rule — simpler & crash-proof
+  const hideIds = [
+    'viewWheel','viewQr',
+    'presentationMode','winnerOverlay','settingsOverlay','resetOverlay',
+    'confettiCanvas',
+  ];
+  hideIds.forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+  // Also hide by class
+  ['.app-header','.feature-nav','.app-footer','.ad-top','.ad-bottom','.seo-content']
+    .forEach(sel=>{ const el=document.querySelector(sel); if(el) el.style.display='none'; });
 
   const pName  = p.get('pn') || '';
   const pEmoji = p.get('pe') || '🎁';
@@ -3063,32 +3988,91 @@ function checkScanPage(){
   const pDesc  = p.get('pd') || '';
   const co     = p.get('co') || '';
   const ev     = p.get('ev') || '';
-  const rd     = p.get('rd') || p.get('sn') || ''; // round number
+  const rd     = p.get('rd') || p.get('sn') || '0';
+  const ts     = p.get('ts') || '0';
 
-  // Show prize — NO winner name (anonymous QR, anyone who scans sees prize)
-  document.getElementById('scanName').textContent    = pName ? `${pEmoji} ${pName}` : '🎁 Surprise Prize';
-  document.getElementById('scanCompany').textContent = co;
-  document.getElementById('scanCompany').style.display = co ? '' : 'none';
-  document.getElementById('scanEvent').textContent   = ev;
-  document.getElementById('scanEvent').style.display = ev ? '' : 'none';
-  document.getElementById('scanFooterEvent').textContent = ev || 'your event';
-  document.getElementById('scanTrophy').textContent = '🎉';
+  const scanKey     = buildScanKey(rd, ts);
+  const deviceId    = getDeviceId();
+  const alreadyDone = hasAlreadyScanned(scanKey);
 
-  const badge = document.getElementById('scanPrizeBadge');
-  if(pName){
-    badge.textContent  = `You won: ${pEmoji} ${pName}${pDesc?' — '+pDesc:''}`;
-    badge.style.background   = pColor;
-    badge.style.borderColor  = pColor;
-    badge.style.display = '';
-  } else badge.style.display = 'none';
+  if(alreadyDone){
+    /* ── FULL-SCREEN BLOCK ── */
+    document.getElementById('scanPage').style.display = 'none';
+    const block = document.getElementById('scanBlockedScreen');
+    if(!block) return;
+    block.classList.add('show');
 
-  document.getElementById('scanSpinNum').textContent = rd ? `Round #${rd}` : '';
+    const prevData = (()=>{
+      try{ return JSON.parse(localStorage.getItem(scanKey)); }catch(e){ return null; }
+    })();
 
-  // Set body background matching prize color loosely
-  document.body.style.background = `radial-gradient(ellipse 80% 55% at 50% -5%, ${pColor}40 0%, transparent 60%), var(--bg-grad)`;
+    const scannedAt = prevData && prevData.scannedAt
+      ? new Date(prevData.scannedAt).toLocaleString([],{
+          hour:'2-digit',minute:'2-digit',
+          day:'numeric',month:'short',year:'numeric'
+        })
+      : 'earlier this session';
 
-  // Launch confetti on scan page
+    const bRound = document.getElementById('blockRound');
+    const bAt    = document.getElementById('blockScannedAt');
+    const bDev   = document.getElementById('blockDeviceId');
+    if(bRound) bRound.textContent     = `Round #${rd}`;
+    if(bAt)    bAt.textContent        = scannedAt;
+    if(bDev)   bDev.textContent       = deviceId.slice(0,20)+'…';
+
+    document.body.style.overflow      = 'hidden';
+    document.body.style.pointerEvents = 'none';
+    block.style.pointerEvents         = 'all';
+
+    history.pushState(null,'',location.href);
+    window.addEventListener('popstate',()=>history.pushState(null,'',location.href));
+    return;
+  }
+
+  /* ── FIRST SCAN: record + show prize ── */
+  // Respect scan policy
+  const policy = getScanPolicy();
+  if(policy === 'one_per_session'){
+    recordScan(scanKey,{name:pName,emoji:pEmoji,color:pColor,desc:pDesc});
+  }
+  // 'multiple' means we never block — don't record
+
+  document.getElementById('scanPrizeCard').style.display = '';
+
+  const el_name = document.getElementById('scanName');
+  const el_comp = document.getElementById('scanCompany');
+  const el_ev   = document.getElementById('scanEvent');
+  const el_fev  = document.getElementById('scanFooterEvent');
+  const el_trp  = document.getElementById('scanTrophy');
+  const el_spn  = document.getElementById('scanSpinNum');
+  const badge   = document.getElementById('scanPrizeBadge');
+
+  if(el_trp) el_trp.textContent = '🎉';
+  if(el_name) el_name.textContent = pName ? `${pEmoji} ${pName}` : '🎁 Surprise Prize';
+  if(el_comp){ el_comp.textContent=co; el_comp.style.display=co?'':'none'; }
+  if(el_ev)  { el_ev.textContent=ev;  el_ev.style.display=ev?'':'none'; }
+  if(el_fev)   el_fev.textContent = ev||'your event';
+  if(el_spn)   el_spn.textContent = rd!=='0' ? `Round #${rd}` : '';
+
+  if(badge && pName){
+    badge.textContent      = `You won: ${pEmoji} ${pName}${pDesc?' — '+pDesc:''}`;
+    badge.style.background = pColor;
+    badge.style.borderColor= pColor;
+    badge.style.display    = '';
+  } else if(badge) badge.style.display='none';
+
+  document.body.style.background =
+    `radial-gradient(ellipse 80% 55% at 50% -5%, ${pColor}30 0%, transparent 60%), var(--bg-grad)`;
+
   setTimeout(()=>launchScanConfetti(pColor), 300);
+
+  // Broadcast to admin
+  try{
+    localStorage.setItem('lwp_scan_event',JSON.stringify({
+      rd, ts, scanKey, scannedAt:new Date().toISOString(), prize:pName,
+    }));
+    setTimeout(()=>localStorage.removeItem('lwp_scan_event'),500);
+  }catch(e){}
 }
 
 function launchScanConfetti(accentColor){
@@ -3123,32 +4107,59 @@ function launchScanConfetti(accentColor){
 }
 
 
-document.getElementById('bulkInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.ctrlKey)addBulk();});
-document.getElementById('settingsOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('settingsOverlay'))closeSettings();});
-document.getElementById('winnerOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('winnerOverlay'))document.getElementById('winnerOverlay').classList.remove('show');});
-document.getElementById('resetOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('resetOverlay'))closeReset();});
-document.addEventListener('keydown',e=>{
-  if(pmActive){
-    if(e.key==='Escape') exitPresentation();
-    if(e.key===' '&&!pmSpinning){e.preventDefault();pmSpin();}
-    return;
-  }
-  if(e.key==='Escape'){closeSettings();closeReset();document.getElementById('winnerOverlay').classList.remove('show');}
-});
-let _rt;
-window.addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{setupCanvas();drawWheel(currentAngle);},120);});
-
 /* ════════════ INIT ════════════ */
-document.getElementById('fyear').textContent=new Date().getFullYear();
-checkScanPage();
-setupCanvas();
-loadStorage();
-applyTheme(currentTheme);
-updateUI();
-drawWheel(currentAngle);
-// QR view defaults
-setQrMode('auto');
-updateStartBtn();
+document.getElementById('fyear').textContent = new Date().getFullYear();
+
+/* ── Run scan page check FIRST ── */
+const _isScanPage = (new URLSearchParams(window.location.search)).get('scan') === '1';
+checkScanPage();   // if scan page, shows scan/block UI and returns
+
+if(!_isScanPage){
+  /* ── Normal app init (only when NOT in scan mode) ── */
+  try{
+    setupCanvas();
+    loadStorage();
+    applyTheme(currentTheme);
+    updateUI();
+    drawWheel(currentAngle);
+    setQrMode('auto');
+    updateStartBtn();
+  }catch(err){
+    console.error('LuckyWheel init error:', err);
+  }
+
+  /* ── Event listeners (only attach when app is running, not scan page) ── */
+  const ni = document.getElementById('nameInput');
+  if(ni) ni.addEventListener('keydown', e=>{ if(e.key==='Enter') addSingle(); });
+  const bi = document.getElementById('bulkInput');
+  if(bi) bi.addEventListener('keydown', e=>{ if(e.key==='Enter'&&e.ctrlKey) addBulk(); });
+
+  const so = document.getElementById('settingsOverlay');
+  if(so) so.addEventListener('click', e=>{ if(e.target===so) closeSettings(); });
+  const wo = document.getElementById('winnerOverlay');
+  if(wo) wo.addEventListener('click', e=>{ if(e.target===wo) wo.classList.remove('show'); });
+  const ro = document.getElementById('resetOverlay');
+  if(ro) ro.addEventListener('click', e=>{ if(e.target===ro) closeReset(); });
+
+  document.addEventListener('keydown', e=>{
+    if(pmActive){
+      if(e.key==='Escape') exitPresentation();
+      if(e.key===' '&&!pmSpinning){ e.preventDefault(); pmSpin(); }
+      return;
+    }
+    if(e.key==='Escape'){
+      closeSettings(); closeReset();
+      const wo2 = document.getElementById('winnerOverlay');
+      if(wo2) wo2.classList.remove('show');
+    }
+  });
+
+  let _rt;
+  window.addEventListener('resize',()=>{
+    clearTimeout(_rt);
+    _rt=setTimeout(()=>{ setupCanvas(); drawWheel(currentAngle); },120);
+  });
+}
 </script>
 </body>
 </html>
