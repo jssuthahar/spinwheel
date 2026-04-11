@@ -3947,7 +3947,7 @@ function renderQrHistory(){
     const mini=document.createElement('div'); mini.className='qr-hist-mini';
     renderQR(mini,h.url,34);
     const time=new Date(h.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-    div.innerHTML=`<div class="qr-hist-info"><div class="qr-hist-name">Round ${h.round} — 🔒 Hidden</div><div class="qr-hist-prize">${h.prize?`${h.prize.emoji} ${escH(h.prize.name)}`:''}</div></div><div class="qr-hist-time">${time}</div>`;
+    div.innerHTML=`<div class="qr-hist-info"><div class="qr-hist-name">Round ${h.round} — 🔒 Hidden</div><div class="qr-hist-prize">${h.prize?`${h.prize.emoji}`:''}</div></div><div class="qr-hist-time">${time}</div>`;
     div.prepend(mini);
     div.onclick=()=>{
       // Click to reload this QR in the stage box (admin can see history)
